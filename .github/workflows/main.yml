@@ -41,8 +41,7 @@ jobs:
           # Content Type
           contentType: "application/json"
           # Request Body as JSON String
-          data: >-
-            {"config": "${{steps.read_file.outputs.contents}}}"}
+          data: {"config": "${{steps.read_file.outputs.contents}}}"}
           # Custom HTTP Headers
           customHeaders: "{\"X-Api-Key\": \"${{ secrets.zeppelin_apikey }}\"}"
          
