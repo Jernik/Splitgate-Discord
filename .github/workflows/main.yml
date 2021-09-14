@@ -33,4 +33,4 @@ jobs:
       - run: cat <(echo '{"config":\ "') temp2.yaml > final.json
       - run: echo '"}' >> final.json
       - run: echo final.json
-      - run: curl -X POST -H "Content-Type: application/json" -H "X-Api-Key: ${{ secrets.zeppelin_apikey }}" --data @final.json https://api.jernik.me/guilds/361634430626037770/config
+      - run: curl -X POST -H "Content-Type:\ application/json" -H "X-Api-Key:\ ${{ secrets.zeppelin_apikey }}" --data @final.json https://api.jernik.me/guilds/361634430626037770/config
