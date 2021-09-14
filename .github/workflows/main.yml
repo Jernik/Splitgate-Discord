@@ -28,7 +28,7 @@ jobs:
         uses: andstor/file-reader-action@v1.0.0
         with:
           path: "Splitmod/Splitgate.yaml"
-      - run: awk '{ printf "%s\\r\\n",$1 }' > temp.yaml
+      - run: awk '{ printf "%s\\r\\n",$1 }' "Splitmod/Splitgate.yaml"> temp.yaml
       - run: cat <(echo '{"config":"') temp.yaml > final.json
       - run: echo '"}' >> final.json
       - run: cat final.json
