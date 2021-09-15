@@ -30,4 +30,4 @@ jobs:
           guild_id=361634430626037770
           endpoint_url="https://api.zeppelin.gg/guilds/$guild_id/config"
           request_body=$(jq -n --arg raw_config "$raw_config" '{config:$raw_config}')
-          curl -X POST -d "$request_body" -H "Content-Type:application/json" -H "X-Api-Key:${{ secrets.zeppelin_apikey }}" $endpoint_url
+          curl -v -X POST -d "$request_body" -H "Content-Type:application/json" -H "X-Api-Key:${{ secrets.zeppelin_apikey }}" $endpoint_url
