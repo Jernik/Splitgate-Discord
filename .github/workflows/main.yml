@@ -23,10 +23,11 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - run: sudo apt-get update
-      - run: sudo apt install jq
-      - run: raw_config=$(cat Splitmod/Splitgate.yaml)
-      - run: guild_id=361634430626037770
-      - run: endpoint_url="https://api.zeppelin.gg/guilds/$guild_id/config"
-      - run: request_body=$(jq -n --arg raw_config "$raw_config" '{config:$raw_config}')
-      - run: curl -X POST -d "$request_body" -H "Content-Type:application/json" -H "X-Api-Key:${{ secrets.zeppelin_apikey }}" $endpoint_url
+      - run: |
+          sudo apt-get update
+          sudo apt install jq
+          raw_config=$(cat Splitmod/Splitgate.yaml)
+          guild_id=361634430626037770
+          endpoint_url="https://api.zeppelin.gg/guilds/$guild_id/config"
+          request_body=$(jq -n --arg raw_config "$raw_config" '{config:$raw_config}')
+          curl -X POST -d "$request_body" -H "Content-Type:application/json" -H "X-Api-Key:${{ secrets.zeppelin_apikey }}" $endpoint_url
