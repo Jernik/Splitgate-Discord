@@ -23,13 +23,10 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: File Reader
-        id: read_file
-        uses: andstor/file-reader-action@v1.0.0
-        with:
-          path: "Splitmod/Splitgate.yaml"
-      - run: sed 's/"/\\"/g' "Splitmod/Splitgate.yaml"> temp.yaml
-      - run: cat <(echo '{"config":"') temp.yaml > final.json
-      - run: echo '"}' >> final.json
-      - run: cat final.json
-      - run: curl -X POST -H "Content-Type:application/json" -H "X-Api-Key:${{ secrets.zeppelin_apikey }}" --data @final.json https://api.jernik.me/guilds/361634430626037770/config
+      - run: sudo apt-get update
+      - run: sudo apt install jq
+      - run: raw_config=$(cat Splitmod/Splitgate.yaml)
+      - run: guild_id=361634430626037770
+      - run: endpoint_url="https://api.zeppelin.gg/guilds/$guild_id/config"
+      - run: request_body=$(jq -n --arg raw_config "$raw_config" '{config:$raw_config}')
+      - run: curl -X POST -d "$request_body" -H "Content-Type:application/json" -H "X-Api-Key:${{ secrets.zeppelin_apikey }}" $endpoint_url
