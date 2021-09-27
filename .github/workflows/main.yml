@@ -26,9 +26,12 @@ jobs:
       - run: |
           sudo apt-get update
           sudo apt install jq
-          raw_config=$(cat Splitmod/Splitgate.yaml)
-          guild_id=361634430626037770
-          endpoint_url="https://api.jernik.me/guilds/$guild_id/config"
-          jq -n --arg raw_config "$raw_config" '{config:$raw_config}' > final.json
-          cat final.json
-          curl -v -X POST -H "Content-Type:application/json" -H "X-Api-Key:${{ secrets.zeppelin_apikey }}" --data @final.json $endpoint_url
+          for filename in "/Splitmod/*.yaml"
+          do
+            echo "Processing $f"
+            raw_config=$(cat $f)
+            guild_id="$(basename $filename .yaml)"
+            endpoint_url="https://api.jernik.me/guilds/$guild_id/config"
+            jq -n --arg raw_config "$raw_config" '{config:$raw_config}' > ${guild_id}.json
+            curl -v -X POST -H "Content-Type:application/json" -H "X-Api-Key:${{ secrets.zeppelin_apikey }}" --data @final.json $endpoint_url
+          done
