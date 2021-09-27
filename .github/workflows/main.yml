@@ -31,5 +31,5 @@ jobs:
             guild_id="$(basename $filename .yaml)"
             endpoint_url="https://api.jernik.me/guilds/$guild_id/config"
             jq -n --arg raw_config "$raw_config" '{config:$raw_config}' > ${guild_id}.json
-            curl -X POST -H "Content-Type:application/json" -H "X-Api-Key:${{ secrets.zeppelin_apikey }}" --data @${guild_id}.json $endpoint_url
+            curl --fail-with-body -X POST -H "Content-Type:application/json" -H "X-Api-Key:${{ secrets.zeppelin_apikey }}" --data @${guild_id}.json $endpoint_url
           done
