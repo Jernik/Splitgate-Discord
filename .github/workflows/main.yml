@@ -26,7 +26,7 @@ jobs:
       - run: |
           sudo apt-get update
           sudo apt install jq
-          for filename in "/Splitmod/*.yaml"
+          for filename in /Splitmod/*.yaml
           do
             echo "Processing $filename"
             raw_config=$(cat $filename)
