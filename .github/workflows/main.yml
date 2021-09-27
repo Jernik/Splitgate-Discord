@@ -28,10 +28,10 @@ jobs:
           sudo apt install jq
           for filename in "/Splitmod/*.yaml"
           do
-            echo "Processing $f"
-            raw_config=$(cat $f)
+            echo "Processing $filename"
+            raw_config=$(cat $filename)
             guild_id="$(basename $filename .yaml)"
             endpoint_url="https://api.jernik.me/guilds/$guild_id/config"
             jq -n --arg raw_config "$raw_config" '{config:$raw_config}' > ${guild_id}.json
-            curl -v -X POST -H "Content-Type:application/json" -H "X-Api-Key:${{ secrets.zeppelin_apikey }}" --data @final.json $endpoint_url
+            curl -X POST -H "Content-Type:application/json" -H "X-Api-Key:${{ secrets.zeppelin_apikey }}" --data @final.json $endpoint_url
           done
