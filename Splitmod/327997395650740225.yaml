@@ -201,6 +201,7 @@ plugins:
                 patterns:
                   - "\\bn[!ali1]{1}(g){2}(a|er){1,2}" #n word version 1
                   - "\\bn(@@|.i|i.){1}(g){1,2}(a|er){1,2}" #n word version 2
+                  - "\\bn{1,}i{1,}g{2,}e{1,}r{1,}" #n word version 3
                   - "\\bf(4|a){1}(g){1,2}(ot|0t){0,}" #f word
                 normalize: true
                 strip_markdown: true
