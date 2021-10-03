@@ -160,6 +160,8 @@ plugins:
                   - "(?=(.|\\n)*\\bgiv)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]).+"
                   - "(?=(.|\\n)*\\bsteam)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]).+"
                   - "(?=(.|\\n)*\\bdiscord)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]).+"
+                  - "(?=(.|\\n)*\\bdiscord)(?=(.|\\n)*\\gift\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]).+"
+                  - "(?=(.|\\n)*\\bbro)(?=(.|\\n)*\\gift\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]).+"
                 case_sensitive: false
                 normalize: true
                 strip_markdown: true
@@ -199,6 +201,7 @@ plugins:
                 patterns:
                   - "\\bn[!ali1]{1}(g){2}(a|er){1,2}" #n word version 1
                   - "\\bn(@@|.i|i.){1}(g){1,2}(a|er){1,2}" #n word version 2
+                  - "\\bn{1,}i{1,}g{2,}e{1,}r{1,}" #n word version 3
                   - "\\bf(4|a){1}(g){1,2}(ot|0t){0,}" #f word
                 normalize: true
                 strip_markdown: true
@@ -214,7 +217,7 @@ plugins:
             ban:
               reason: "Offensive language."
 
-       #BAD NAME FILTER
+        #BAD NAME FILTER
         bad_name_filter:
           triggers:
             - match_words:
@@ -552,7 +555,6 @@ plugins:
                     "Deez",
                     "ligma",
                     "sugma",
-                    "dead game",
                   ]
                 case_sensitive: false
                 only_full_words: true
@@ -645,7 +647,7 @@ plugins:
                   - discord.gg
                 include_subdomains: true
                 match_embeds: false
-                only_real_links: false
+                only_real_links: true
           actions:
             clean: true
             reply:
@@ -742,6 +744,22 @@ plugins:
             reply:
               text: >-
                 <@!{user.id}> Find the current **estimated** queue time in the top channel of this server: <#870829581890887751>.
+              auto_delete: 10s
+
+        # SUGGESTIONS RESPOND
+        suggestions_respond:
+          triggers:
+            - match_words:
+                # Add words that should be filtered in the row below
+                words: ["dead game"]
+                case_sensitive: false
+                only_full_words: true
+                normalize: true
+          actions:
+            clean: true
+            reply:
+              text: >-
+                <@!{user.id}> What would you do to fix it?.
               auto_delete: 10s
 
         # PHONENUMBER FILTER
@@ -1008,6 +1026,8 @@ plugins:
               enabled: true
             queue_respond:
               enabled: false
+            suggestions_respond:
+              enabled: false
             content_filter:
               enabled: true
             message_filter:
@@ -1057,6 +1077,8 @@ plugins:
             bad_name_filter:
               enabled: false
             queue_respond:
+              enabled: false
+            suggestions_respond:
               enabled: false
             content_filter:
               enabled: false
