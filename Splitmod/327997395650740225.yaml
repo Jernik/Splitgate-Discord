@@ -555,7 +555,6 @@ plugins:
                     "Deez",
                     "ligma",
                     "sugma",
-                    "dead game",
                   ]
                 case_sensitive: false
                 only_full_words: true
@@ -745,6 +744,22 @@ plugins:
             reply:
               text: >-
                 <@!{user.id}> Find the current **estimated** queue time in the top channel of this server: <#870829581890887751>.
+              auto_delete: 10s
+
+        # SUGGESTIONS RESPOND
+        suggestions_respond:
+          triggers:
+            - match_words:
+                # Add words that should be filtered in the row below
+                words: ["dead game"]
+                case_sensitive: false
+                only_full_words: true
+                normalize: true
+          actions:
+            clean: true
+            reply:
+              text: >-
+                <@!{user.id}> What would you do to fix it?.
               auto_delete: 10s
 
         # PHONENUMBER FILTER
@@ -1011,6 +1026,8 @@ plugins:
               enabled: true
             queue_respond:
               enabled: false
+            suggestions_respond:
+              enabled: false
             content_filter:
               enabled: true
             message_filter:
@@ -1060,6 +1077,8 @@ plugins:
             bad_name_filter:
               enabled: false
             queue_respond:
+              enabled: false
+            suggestions_respond:
               enabled: false
             content_filter:
               enabled: false
