@@ -1422,7 +1422,7 @@ plugins:
           <:date:710921466782154862> {userMention(author)} scheduled a message to be posted to
           {channelMention(channel)} {repeatDetails}
         POSTED_SCHEDULED_MESSAGE: "<:date:710921466782154862> Posted scheduled message (`{messageId}`) to {channelMention(channel)} as scheduled by {userMention(author)}"
-        BOT_ALERT: "<:alarm:710915036956196911> {tmplEval(body)}"
+        BOT_ALERT: "<:alarm:710915036956196911> BOT ALERT {tmplEval(body)}"
         AUTOMOD_ACTION: "\U0001F916 Automod **{rule}** triggered by {userMention(users)} actions taken: **{actionsTaken}**\n{matchSummary}"
         SET_ANTIRAID_USER: "<:alarm:710915036956196911> {userMention(user)} set anti-raid to **{level}**"
         SET_ANTIRAID_AUTO: "<:alarm:710915036956196911> Anti-raid automatically set to **{level}**"
