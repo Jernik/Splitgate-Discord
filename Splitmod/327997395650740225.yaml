@@ -13,6 +13,7 @@ levels:
   "384837807069462528": 50 # Discord bot
   "870870582005202965": 40 # Helper
   "476528106585325580": 35 # Partnered Streamer
+  "895664217573687346": 31 # Event Winner
   "637489989344690176": 30 # Community Creator
 
 plugins:
@@ -1059,6 +1060,12 @@ plugins:
             hard_word_filter:
               enabled: true
             spammed_words_filter:
+              enabled: false
+      - level: ">=31"
+        config:
+          can_view_antiraid: true
+          rules:
+            content_filter:
               enabled: false
       - level: ">=35"
         config:
