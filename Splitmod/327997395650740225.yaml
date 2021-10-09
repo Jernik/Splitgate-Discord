@@ -670,6 +670,10 @@ plugins:
                   - tiktok.com
                   - twitter.com
                   - tracker.gg
+                  - 1047games.com
+                exclude_regex:
+                  - 'discord\.gg\/splitgatelfg'
+                  - 'support\@1047games\.com'
                 include_subdomains: true
                 match_embeds: false
                 only_real_links: false
