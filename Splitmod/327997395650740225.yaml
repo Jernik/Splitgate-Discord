@@ -751,21 +751,21 @@ plugins:
                 <@!{user.id}> Find the current **estimated** queue time in the top channel of this server: <#870829581890887751>.
               auto_delete: 10s
 
-        # SUGGESTIONS RESPOND
-        suggestions_respond:
+        # DEAD GAME FILTER
+        dead_game_filter:
           triggers:
-            - match_words:
-                # Add words that should be filtered in the row below
-                words: ["dead game"]
+            - match_regex:
+                patterns:
+                  - '^dead\sgame$'
+                  - '^ded\sgame$'
                 case_sensitive: false
-                only_full_words: true
                 normalize: true
           actions:
             clean: true
-            reply:
-              text: >-
-                <@!{user.id}> What would you do to fix it?.
-              auto_delete: 10s
+            log: false
+            mute:
+              reason: "General toxicity"
+              duration: 12h
 
         # PHONENUMBER FILTER
         phonenumber_filter:
@@ -1031,7 +1031,7 @@ plugins:
               enabled: true
             queue_respond:
               enabled: false
-            suggestions_respond:
+            dead_game_filter:
               enabled: false
             content_filter:
               enabled: true
@@ -1089,7 +1089,7 @@ plugins:
               enabled: false
             queue_respond:
               enabled: false
-            suggestions_respond:
+            dead_game_filter:
               enabled: false
             content_filter:
               enabled: false
