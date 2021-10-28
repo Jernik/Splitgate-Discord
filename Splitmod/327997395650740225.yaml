@@ -157,12 +157,28 @@ plugins:
           triggers:
             - match_regex:
                 patterns:
-                  - "(?=(.|\\n)*\\bfree)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]).+"
-                  - "(?=(.|\\n)*\\bgiv)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]).+"
-                  - "(?=(.|\\n)*\\bsteam)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]).+"
-                  - "(?=(.|\\n)*\\bdiscord)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]).+"
-                  - "(?=(.|\\n)*\\bdiscord)(?=(.|\\n)*\\gift\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]).+"
-                  - "(?=(.|\\n)*\\bbro)(?=(.|\\n)*\\gift\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]).+"
+                  - "(?=(.|\\n)*\\bfree)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
+                  - "(?=(.|\\n)*\\bgiv)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
+                  - "(?=(.|\\n)*\\bsteam)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
+                  - "(?=(.|\\n)*\\bdiscord)(?=(.|\\n)*\\bnitro)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
+                  - "(?=(.|\\n)*\\bdiscord)(?=(.|\\n)*\\gift\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
+                  - "(?=(.|\\n)*\\bbro)(?=(.|\\n)*\\gift\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
+                  - "(?=(.|\\n)*\\btake)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
+                case_sensitive: false
+                normalize: true
+                strip_markdown: true
+                match_messages: true
+                match_embeds: true
+          actions:
+            clean: true
+            ban:
+              reason: "Posting Discord Nitro scam links"
+        # Nitro Shadow FILTER
+        nitro_shadow_filter:
+          triggers:
+            - match_regex:
+                patterns:
+                  - "(?=((.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]){2,})(?=((.|\\n)*\\bhttps:\/\/discord\\.gift){1}).+"
                 case_sensitive: false
                 normalize: true
                 strip_markdown: true
@@ -542,7 +558,6 @@ plugins:
                     "incel",
                     "cunts",
                     "tarded",
-                    "discord.gift",
                     "lolicon",
                     "loli",
                     "⣠",
@@ -646,6 +661,8 @@ plugins:
                 exclude_domains: # When updating this list also update the standard domains in the fanart and video/clips filter below
                   - splitgate.com
                   - discord.gg
+                  - splitgateproseries.com
+                  - discord.gift
                 include_subdomains: true
                 match_embeds: false
                 only_real_links: true
@@ -970,6 +987,8 @@ plugins:
               enabled: false
             nitro_filter:
               enabled: false
+            nitro_shadow_filter:
+              enabled: false
             content_filter:
               enabled: true
       - channel: "764157747359907850" # community streams
@@ -978,6 +997,8 @@ plugins:
             domain_filter:
               enabled: false
             nitro_filter:
+              enabled: false
+            nitro_shadow_filter:
               enabled: false
             content_filter:
               enabled: true
@@ -988,6 +1009,8 @@ plugins:
               enabled: false
             nitro_filter:
               enabled: false
+            nitro_shadow_filter:
+              enabled: false
             content_filter:
               enabled: true
       - channel: "827084869788106792" # creator clips
@@ -997,6 +1020,8 @@ plugins:
               enabled: false
             nitro_filter:
               enabled: false
+            nitro_shadow_filter:
+              enabled: false
             content_filter:
               enabled: true
       - channel: "637493321740189706" # creator chat
@@ -1005,6 +1030,8 @@ plugins:
             domain_filter:
               enabled: false
             nitro_filter:
+              enabled: false
+            nitro_shadow_filter:
               enabled: false
             content_filter:
               enabled: true
@@ -1046,6 +1073,8 @@ plugins:
             domain_filter:
               enabled: false
             nitro_filter:
+              enabled: false
+            nitro_shadow_filter:
               enabled: false
             invite_filter:
               enabled: false
@@ -1104,6 +1133,8 @@ plugins:
             domain_filter:
               enabled: false
             nitro_filter:
+              enabled: false
+            nitro_shadow_filter:
               enabled: false
             invite_filter:
               enabled: false
