@@ -265,6 +265,7 @@ plugins:
                   - "\\bn[!ali1]{1}(g){2}(a|er){1,2}" #n word version 1
                   - "\\bn(@@|.i|i.){1}(g){1,2}(a|er){1,2}" #n word version 2
                   - "\\bf(4|a){1}(g){1,2}(ot|0t){0,}" #f word
+                  - "\b.*卐.*\b" #swastika
                 match_messages: false
                 match_embeds: false
                 match_visible_names: true
@@ -688,9 +689,11 @@ plugins:
                   - twitter.com
                   - tracker.gg
                   - 1047games.com
+                  - facebook.com
                 exclude_regex:
                   - 'discord\.gg\/splitgatelfg'
                   - 'support\@1047games\.com'
+                  - 'splitgateproseries\.com'
                 include_subdomains: true
                 match_embeds: false
                 only_real_links: false
@@ -780,9 +783,8 @@ plugins:
           actions:
             clean: true
             log: false
-            mute:
+            ban:
               reason: "General toxicity"
-              duration: 12h
 
         # PHONENUMBER FILTER
         phonenumber_filter:
