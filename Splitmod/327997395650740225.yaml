@@ -684,8 +684,8 @@ plugins:
             ban:
               reason: "Offensive language."
 
-        # DOMAIN FILTER
-        domain_filter:
+        # HARD DOMAIN FILTER
+        hard_domain_filter:
           triggers:
             - match_links:
                 exclude_domains: # When updating this list also update the standard domains in the fanart and video/clips filter below
@@ -737,6 +737,7 @@ plugins:
                   - tracker.gg
                   - 1047games.com
                   - facebook.com
+                  - medium.com
                 exclude_regex:
                   - 'discord\.gg\/splitgatelfg'
                   - 'support\@1047games\.com'
@@ -939,7 +940,7 @@ plugins:
           actions:
             log: true
             warn:
-              reason: "The final warning, please do not post links to the external webssites"
+              reason: "The final warning, please do not post links to the external websites"
               postInCaseLog: true
 
         automodc6:
@@ -1080,6 +1081,8 @@ plugins:
       - channel: "485558276482924544" # partner streams
         config:
           rules:
+            hard_domain_filter:
+              enabled: false
             domain_filter:
               enabled: false
             nitro_filter:
@@ -1088,9 +1091,11 @@ plugins:
               enabled: false
             content_filter:
               enabled: true
-      - channel: "764157747359907850" # community streams
+      - channel: "907357733962010677" # community streams
         config:
           rules:
+            hard_domain_filter:
+              enabled: false
             domain_filter:
               enabled: false
             nitro_filter:
@@ -1099,9 +1104,11 @@ plugins:
               enabled: false
             content_filter:
               enabled: true
-      - channel: "844373853237280781" # creator videos
+      - channel: "907356883176796202" # creator videos
         config:
           rules:
+            hard_domain_filter:
+              enabled: false
             domain_filter:
               enabled: false
             nitro_filter:
@@ -1113,6 +1120,8 @@ plugins:
       - channel: "827084869788106792" # creator clips
         config:
           rules:
+            hard_domain_filter:
+              enabled: false
             domain_filter:
               enabled: false
             nitro_filter:
@@ -1124,8 +1133,10 @@ plugins:
       - channel: "637493321740189706" # creator chat
         config:
           rules:
-            domain_filter:
+            hard_domain_filter:
               enabled: false
+            domain_filter:
+              enabled: true
             nitro_filter:
               enabled: false
             nitro_shadow_filter:
@@ -1136,7 +1147,7 @@ plugins:
               enabled: false
             hard_ref_filter:
               enabled: false
-            bad_name_filter:
+            hard_bad_name_filter:
               enabled: false
 
       - level: ">=30"
@@ -1166,6 +1177,8 @@ plugins:
             word_filter:
               enabled: false
             wildcard_filter:
+              enabled: false
+            hard_domain_filter:
               enabled: false
             domain_filter:
               enabled: false
@@ -1197,6 +1210,10 @@ plugins:
           rules:
             content_filter:
               enabled: false
+            hard_domain_filter:
+              enabled: false
+            domain_filter:
+              enabled: true
       - level: ">=35"
         config:
           can_view_antiraid: true
@@ -1226,8 +1243,6 @@ plugins:
             word_filter:
               enabled: false
             wildcard_filter:
-              enabled: false
-            domain_filter:
               enabled: false
             nitro_filter:
               enabled: false
