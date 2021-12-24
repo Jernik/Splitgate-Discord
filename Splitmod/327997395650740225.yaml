@@ -819,8 +819,8 @@ plugins:
                 <@!{user.id}> Find the current **estimated** queue time in the top channel of this server: <#870829581890887751>.
               auto_delete: 10s
 
-        # DEAD GAME FILTER
-        dead_game_filter:
+       # HARD DEAD GAME FILTER
+        hard_dead_game_filter:
           triggers:
             - match_regex:
                 patterns:
@@ -833,6 +833,36 @@ plugins:
             log: false
             ban:
               reason: "General toxicity"
+
+        # DEAD GAME FILTER
+        dead_game_filter:
+          triggers:
+            - match_regex:
+                patterns:
+                  - "(?=(.|\\n)*\\bdead)(?=(.|\\n)*\\bgame\\b).+"
+                case_sensitive: false
+                normalize: true
+          actions:
+            clean: false
+            log: true
+        
+        # SPOILER FILTER
+        spoiler_filter:
+          triggers:
+            - match_regex:
+                patterns:
+                  - "(?=(.|\\n)*\\bspider)(?=(.|\\n)*man).+"
+                  - "(?=(.|\\n)*\\bpeter)(?=(.|\\n)*\\bparker).+"
+                  - "(?=(.|\\n)*\\bgreen)(?=(.|\\n)*\\bgoblin).+"
+                  - "(?=(.|\\n)*\\baunt)(?=(.|\\n)*\\bmay).+"
+                  - "(?=(.|\\n)*\\btobey)(?=(.|\\n)*\\bmaguire).+"
+                  - "(?=(.|\\n)*\\bandrew)(?=(.|\\n)*\\bgarfield).+"
+                  - "(?=(.|\\n)*\\btom)(?=(.|\\n)*\\bholland).+"
+                case_sensitive: false
+                normalize: true
+          actions:
+            clean: true
+            log: true
 
         # PHONENUMBER FILTER
         phonenumber_filter:
@@ -1162,14 +1192,16 @@ plugins:
               enabled: false
             hard_ref_filter:
               enabled: true
-            bad_name_filter:
-              enabled: true
+            hard_bad_name_filter:
+              enabled: false
             queue_respond:
               enabled: false
+            spoiler_filter:
+              enabled: true
             dead_game_filter:
               enabled: false
-            content_filter:
-              enabled: true
+            hard_dead_game_filter:
+              enabled: false
             message_filter:
               enabled: false
             attachment_filter:
@@ -1177,10 +1209,6 @@ plugins:
             word_filter:
               enabled: false
             wildcard_filter:
-              enabled: false
-            hard_domain_filter:
-              enabled: false
-            domain_filter:
               enabled: false
             nitro_filter:
               enabled: false
@@ -1228,11 +1256,15 @@ plugins:
               enabled: false
             hard_ref_filter:
               enabled: false
-            bad_name_filter:
+            hard_bad_name_filter:
               enabled: false
             queue_respond:
               enabled: false
+            spoiler_filter:
+              enabled: false
             dead_game_filter:
+              enabled: false
+            hard_dead_game_filter:
               enabled: false
             content_filter:
               enabled: false
@@ -1243,6 +1275,10 @@ plugins:
             word_filter:
               enabled: false
             wildcard_filter:
+              enabled: false
+            hard_domain_filter:
+              enabled: false
+            domain_filter:
               enabled: false
             nitro_filter:
               enabled: false
