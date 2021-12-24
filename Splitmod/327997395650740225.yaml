@@ -126,6 +126,14 @@ plugins:
           decay:
             amount: 1
             every: 12h
+        autogif:
+          per_user: true
+          triggers:
+            auto_warning1:
+              condition: ">=2"
+          decay:
+            amount: 1
+            every: 1m
         autodomain:
           per_user: true
           triggers:
@@ -139,6 +147,18 @@ plugins:
             amount: 1
             every: 12h
         autoinvite:
+          per_user: true
+          triggers:
+            auto_warning1:
+              condition: ">=2"
+            auto_warning2:
+              condition: ">=3"
+            auto_mute:
+              condition: ">=4"
+          decay:
+            amount: 1
+            every: 12h
+        autospam:
           per_user: true
           triggers:
             auto_warning1:
@@ -317,6 +337,9 @@ plugins:
             reply:
               text: "<@!{user.id}> you sent too many messages in a short period of time which was detected as spam, please take a breather."
               auto_delete: 5s
+            add_to_counter:
+              counter: "autospam"
+              amount: 1
 
         #ATTACHMENT FILTER
         attachment_filter:
@@ -679,6 +702,24 @@ plugins:
               counter: "autodomain"
               amount: 1
 
+        # DOMAIN FILTER
+        domain_filter:
+          triggers:
+            - match_links:
+                exclude_domains: # When updating this list also update the standard domains in the fanart and video/clips filter below
+                  - splitgate.com
+                  - discord.gg
+                  - splitgateproseries.com
+                  - discord.gift
+                include_subdomains: true
+                match_embeds: false
+                only_real_links: true
+          actions:
+            log: false
+            add_to_counter:
+              counter: "autogif"
+              amount: 1
+
         # CONTENT FILTER
         content_filter:
           enabled: false
@@ -944,6 +985,54 @@ plugins:
               reason: "Automatic punishment escalation (strike 3)"
               duration: 12h
               postInCaseLog: true
+              
+        #spam filter escalation
+        automodc10:
+          triggers:
+            - counter_trigger:
+                counter: "autospam"
+                trigger: "auto_warning1"
+          actions:
+            log: true
+            warn:
+              reason: "Please do not spam"
+              postInCaseLog: true
+
+        automodc11:
+          triggers:
+            - counter_trigger:
+                counter: "autospam"
+                trigger: "auto_warning2"
+          actions:
+            log: true
+            warn:
+              reason: "The final warning, please stop spamming"
+              postInCaseLog: true
+
+        automodc12:
+          triggers:
+            - counter_trigger:
+                counter: "autospam"
+                trigger: "auto_mute"
+          actions:
+            log: true
+            mute:
+              reason: "Automatic punishment escalation (strike 3)"
+              duration: 12h
+              postInCaseLog: true
+
+        #gif filter escalation
+        automodc14:
+          triggers:
+            - counter_trigger:
+                counter: "autogif"
+                trigger: "auto_warning1"
+          actions:
+            log: true
+            clean: true
+            reply:
+              text: "<@!{user.id}> please do not post too many gifs"
+              auto_delete: 5s
 
         auto_nick:
           enabled: false
