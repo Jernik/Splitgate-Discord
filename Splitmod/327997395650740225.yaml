@@ -182,11 +182,14 @@ plugins:
                 patterns:
                   - "(?=(.|\\n)*\\bfree)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
                   - "(?=(.|\\n)*\\bgiv)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
+                  - "(?=(.|\\n)*\\bgift)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
                   - "(?=(.|\\n)*\\bsteam)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
                   - "(?=(.|\\n)*\\bdiscord)(?=(.|\\n)*\\bnitro)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
                   - "(?=(.|\\n)*\\bdiscord)(?=(.|\\n)*\\gift\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
                   - "(?=(.|\\n)*\\bbro)(?=(.|\\n)*\\gift\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
                   - "(?=(.|\\n)*\\btake)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
+                  - "(?=(.|\\n)*\\bfortnite)(?=(.|\\n)*\\bcheat\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
+                  - "(?=(.|\\n)*\\bleft)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
                 case_sensitive: false
                 normalize: true
                 strip_markdown: true
