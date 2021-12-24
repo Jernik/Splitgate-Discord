@@ -112,7 +112,7 @@ plugins:
   counters:
     config:
       can_view: true
-      can_edit: false
+      can_edit: true
       counters:
         automod:
           per_user: true
