@@ -1427,6 +1427,7 @@ plugins:
     config:
       auto_refresh_interval: 900000
       can_manage: false
+      remove_user_reactions: false
     overrides:
       - level: ">=50"
         config:
@@ -1444,8 +1445,8 @@ plugins:
   # PERSIST
   persist:
     config:
-      persisted_roles: ["480376964356767755"] # Roles that should be added back when an user leaves and joins back
-      persist_nicknames: false
+      persisted_roles: ["480376964356767755", "637489989344690176"] # Roles that should be added back when an user leaves and joins back
+      persist_nicknames: true
       persist_voice_mutes: false
 
   # SLOWMODE
