@@ -13,6 +13,10 @@ levels:
   "384837807069462528": 50 # Discord bot
   "870870582005202965": 40 # Helper
   "476528106585325580": 35 # Partnered Streamer
+  "909163295032877168": 34 # Level 75
+  "900822270275096659": 33 # Level 50
+  "900822184740655125": 32 # Level 40
+  "895664217573687346": 31 # Event Winner
   "637489989344690176": 30 # Community Creator
 
 plugins:
@@ -108,7 +112,7 @@ plugins:
   counters:
     config:
       can_view: true
-      can_edit: false
+      can_edit: true
       counters:
         automod:
           per_user: true
@@ -122,6 +126,14 @@ plugins:
           decay:
             amount: 1
             every: 12h
+        autogif:
+          per_user: true
+          triggers:
+            auto_warning1:
+              condition: ">=2"
+          decay:
+            amount: 1
+            every: 1m
         autodomain:
           per_user: true
           triggers:
@@ -146,6 +158,18 @@ plugins:
           decay:
             amount: 1
             every: 12h
+        autospam:
+          per_user: true
+          triggers:
+            auto_warning1:
+              condition: ">=2"
+            auto_warning2:
+              condition: ">=3"
+            auto_mute:
+              condition: ">=4"
+          decay:
+            amount: 1
+            every: 12h
 
   # AUTOMOD
   automod:
@@ -156,12 +180,31 @@ plugins:
           triggers:
             - match_regex:
                 patterns:
-                  - "(?=(.|\\n)*\\bfree)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]).+"
-                  - "(?=(.|\\n)*\\bgiv)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]).+"
-                  - "(?=(.|\\n)*\\bsteam)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]).+"
-                  - "(?=(.|\\n)*\\bdiscord)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]).+"
-                  - "(?=(.|\\n)*\\bdiscord)(?=(.|\\n)*\\gift\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]).+"
-                  - "(?=(.|\\n)*\\bbro)(?=(.|\\n)*\\gift\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]).+"
+                  - "(?=(.|\\n)*\\bfree)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
+                  - "(?=(.|\\n)*\\bgiv)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
+                  - "(?=(.|\\n)*\\bgift)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
+                  - "(?=(.|\\n)*\\bsteam)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
+                  - "(?=(.|\\n)*\\bdiscord)(?=(.|\\n)*\\bnitro)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
+                  - "(?=(.|\\n)*\\bdiscord)(?=(.|\\n)*\\gift\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
+                  - "(?=(.|\\n)*\\bbro)(?=(.|\\n)*\\gift\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
+                  - "(?=(.|\\n)*\\btake)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
+                  - "(?=(.|\\n)*\\bfortnite)(?=(.|\\n)*\\bcheat\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
+                  - "(?=(.|\\n)*\\bleft)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
+                case_sensitive: false
+                normalize: true
+                strip_markdown: true
+                match_messages: true
+                match_embeds: true
+          actions:
+            clean: true
+            ban:
+              reason: "Posting Discord Nitro scam links"
+        # Nitro Shadow FILTER
+        nitro_shadow_filter:
+          triggers:
+            - match_regex:
+                patterns:
+                  - "(?=((.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]){2,})(?=((.|\\n)*\\bhttps:\/\/discord\\.gift){1}).+"
                 case_sensitive: false
                 normalize: true
                 strip_markdown: true
@@ -199,7 +242,7 @@ plugins:
                 normalize: true
             - match_regex:
                 patterns:
-                  - "\\bn[!ali1]{1}(g){2}(a|er){1,2}" #n word version 1
+                  - "\\bn[!ali1\\|]{1}(g){2}(a|er){1,2}" #n word version 1
                   - "\\bn(@@|.i|i.){1}(g){1,2}(a|er){1,2}" #n word version 2
                   - "\\bn{1,}i{1,}g{2,}e{1,}r{1,}" #n word version 3
                   - "\\bf(4|a){1}(g){1,2}(ot|0t){0,}" #f word
@@ -217,8 +260,8 @@ plugins:
             ban:
               reason: "Offensive language."
 
-        #BAD NAME FILTER
-        bad_name_filter:
+        # HARD BAD NAME FILTER
+        hard_bad_name_filter:
           triggers:
             - match_words:
                 # Add words that should be filtered in the row below
@@ -245,9 +288,10 @@ plugins:
                 normalize: true
             - match_regex:
                 patterns:
-                  - "\\bn[!ali1]{1}(g){2}(a|er){1,2}" #n word version 1
+                  - "\\bn[!ali1\\|]{1}(g){2}(a|er){1,2}" #n word version 1
                   - "\\bn(@@|.i|i.){1}(g){1,2}(a|er){1,2}" #n word version 2
                   - "\\bf(4|a){1}(g){1,2}(ot|0t){0,}" #f word
+                  - "\b.*卐.*\b" #swastika
                 match_messages: false
                 match_embeds: false
                 match_visible_names: true
@@ -296,6 +340,9 @@ plugins:
             reply:
               text: "<@!{user.id}> you sent too many messages in a short period of time which was detected as spam, please take a breather."
               auto_delete: 5s
+            add_to_counter:
+              counter: "autospam"
+              amount: 1
 
         #ATTACHMENT FILTER
         attachment_filter:
@@ -541,7 +588,6 @@ plugins:
                     "incel",
                     "cunts",
                     "tarded",
-                    "discord.gift",
                     "lolicon",
                     "loli",
                     "⣠",
@@ -638,13 +684,15 @@ plugins:
             ban:
               reason: "Offensive language."
 
-        # DOMAIN FILTER
-        domain_filter:
+        # HARD DOMAIN FILTER
+        hard_domain_filter:
           triggers:
             - match_links:
                 exclude_domains: # When updating this list also update the standard domains in the fanart and video/clips filter below
                   - splitgate.com
                   - discord.gg
+                  - splitgateproseries.com
+                  - discord.gift
                 include_subdomains: true
                 match_embeds: false
                 only_real_links: true
@@ -655,6 +703,24 @@ plugins:
               auto_delete: 5s
             add_to_counter:
               counter: "autodomain"
+              amount: 1
+
+        # DOMAIN FILTER
+        domain_filter:
+          triggers:
+            - match_links:
+                exclude_domains: # When updating this list also update the standard domains in the fanart and video/clips filter below
+                  - splitgate.com
+                  - discord.gg
+                  - splitgateproseries.com
+                  - discord.gift
+                include_subdomains: true
+                match_embeds: false
+                only_real_links: true
+          actions:
+            log: false
+            add_to_counter:
+              counter: "autogif"
               amount: 1
 
         # CONTENT FILTER
@@ -669,6 +735,13 @@ plugins:
                   - tiktok.com
                   - twitter.com
                   - tracker.gg
+                  - 1047games.com
+                  - facebook.com
+                  - medium.com
+                exclude_regex:
+                  - 'discord\.gg\/splitgatelfg'
+                  - 'support\@1047games\.com'
+                  - 'splitgateproseries\.com'
                 include_subdomains: true
                 match_embeds: false
                 only_real_links: false
@@ -746,21 +819,50 @@ plugins:
                 <@!{user.id}> Find the current **estimated** queue time in the top channel of this server: <#870829581890887751>.
               auto_delete: 10s
 
-        # SUGGESTIONS RESPOND
-        suggestions_respond:
+        # HARD DEAD GAME FILTER
+        hard_dead_game_filter:
           triggers:
-            - match_words:
-                # Add words that should be filtered in the row below
-                words: ["dead game"]
+            - match_regex:
+                patterns:
+                  - '^dead\sgame$'
+                  - '^ded\sgame$'
                 case_sensitive: false
-                only_full_words: true
                 normalize: true
           actions:
             clean: true
-            reply:
-              text: >-
-                <@!{user.id}> What would you do to fix it?.
-              auto_delete: 10s
+            log: false
+            ban:
+              reason: "General toxicity"
+
+        # DEAD GAME FILTER
+        dead_game_filter:
+          triggers:
+            - match_regex:
+                patterns:
+                  - "(?=(.|\\n)*\\bdead)(?=(.|\\n)*\\bgame\\b).+"
+                case_sensitive: false
+                normalize: true
+          actions:
+            clean: false
+            log: true
+
+        # SPOILER FILTER
+        spoiler_filter:
+          triggers:
+            - match_regex:
+                patterns:
+                  - "(?=(.|\\n)*\\bspider)(?=(.|\\n)*man).+"
+                  - "(?=(.|\\n)*\\bpeter)(?=(.|\\n)*\\bparker).+"
+                  - "(?=(.|\\n)*\\bgreen)(?=(.|\\n)*\\bgoblin).+"
+                  - "(?=(.|\\n)*\\baunt)(?=(.|\\n)*\\bmay).+"
+                  - "(?=(.|\\n)*\\btobey)(?=(.|\\n)*\\bmaguire).+"
+                  - "(?=(.|\\n)*\\bandrew)(?=(.|\\n)*\\bgarfield).+"
+                  - "(?=(.|\\n)*\\btom)(?=(.|\\n)*\\bholland).+"
+                case_sensitive: false
+                normalize: true
+          actions:
+            clean: true
+            log: true
 
         # PHONENUMBER FILTER
         phonenumber_filter:
@@ -868,7 +970,7 @@ plugins:
           actions:
             log: true
             warn:
-              reason: "The final warning, please do not post links to the external webssites"
+              reason: "The final warning, please do not post links to the external websites"
               postInCaseLog: true
 
         automodc6:
@@ -918,6 +1020,54 @@ plugins:
               duration: 12h
               postInCaseLog: true
 
+        #spam filter escalation
+        automodc10:
+          triggers:
+            - counter_trigger:
+                counter: "autospam"
+                trigger: "auto_warning1"
+          actions:
+            log: true
+            warn:
+              reason: "Please do not spam"
+              postInCaseLog: true
+
+        automodc11:
+          triggers:
+            - counter_trigger:
+                counter: "autospam"
+                trigger: "auto_warning2"
+          actions:
+            log: true
+            warn:
+              reason: "The final warning, please stop spamming"
+              postInCaseLog: true
+
+        automodc12:
+          triggers:
+            - counter_trigger:
+                counter: "autospam"
+                trigger: "auto_mute"
+          actions:
+            log: true
+            mute:
+              reason: "Automatic punishment escalation (strike 3)"
+              duration: 12h
+              postInCaseLog: true
+
+        #gif filter escalation
+        automodc14:
+          triggers:
+            - counter_trigger:
+                counter: "autogif"
+                trigger: "auto_warning1"
+          actions:
+            log: true
+            clean: true
+            reply:
+              text: "<@!{user.id}> please do not post too many gifs"
+              auto_delete: 5s
+
         auto_nick:
           enabled: false
           triggers:
@@ -961,45 +1111,65 @@ plugins:
       - channel: "485558276482924544" # partner streams
         config:
           rules:
+            hard_domain_filter:
+              enabled: false
             domain_filter:
               enabled: false
             nitro_filter:
+              enabled: false
+            nitro_shadow_filter:
               enabled: false
             content_filter:
               enabled: true
-      - channel: "764157747359907850" # community streams
+      - channel: "907357733962010677" # community streams
         config:
           rules:
+            hard_domain_filter:
+              enabled: false
             domain_filter:
               enabled: false
             nitro_filter:
+              enabled: false
+            nitro_shadow_filter:
               enabled: false
             content_filter:
               enabled: true
-      - channel: "844373853237280781" # creator videos
+      - channel: "907356883176796202" # creator videos
         config:
           rules:
+            hard_domain_filter:
+              enabled: false
             domain_filter:
               enabled: false
             nitro_filter:
+              enabled: false
+            nitro_shadow_filter:
               enabled: false
             content_filter:
               enabled: true
       - channel: "827084869788106792" # creator clips
         config:
           rules:
+            hard_domain_filter:
+              enabled: false
             domain_filter:
               enabled: false
             nitro_filter:
+              enabled: false
+            nitro_shadow_filter:
               enabled: false
             content_filter:
               enabled: true
       - channel: "637493321740189706" # creator chat
         config:
           rules:
-            domain_filter:
+            hard_domain_filter:
               enabled: false
+            domain_filter:
+              enabled: true
             nitro_filter:
+              enabled: false
+            nitro_shadow_filter:
               enabled: false
             content_filter:
               enabled: true
@@ -1007,7 +1177,7 @@ plugins:
               enabled: false
             hard_ref_filter:
               enabled: false
-            bad_name_filter:
+            hard_bad_name_filter:
               enabled: false
 
       - level: ">=30"
@@ -1022,14 +1192,16 @@ plugins:
               enabled: false
             hard_ref_filter:
               enabled: true
-            bad_name_filter:
-              enabled: true
+            hard_bad_name_filter:
+              enabled: false
             queue_respond:
               enabled: false
-            suggestions_respond:
-              enabled: false
-            content_filter:
+            spoiler_filter:
               enabled: true
+            dead_game_filter:
+              enabled: false
+            hard_dead_game_filter:
+              enabled: false
             message_filter:
               enabled: false
             attachment_filter:
@@ -1038,9 +1210,9 @@ plugins:
               enabled: false
             wildcard_filter:
               enabled: false
-            domain_filter:
-              enabled: false
             nitro_filter:
+              enabled: false
+            nitro_shadow_filter:
               enabled: false
             invite_filter:
               enabled: false
@@ -1060,6 +1232,16 @@ plugins:
               enabled: true
             spammed_words_filter:
               enabled: false
+      - level: ">=31"
+        config:
+          can_view_antiraid: true
+          rules:
+            content_filter:
+              enabled: false
+            hard_domain_filter:
+              enabled: false
+            domain_filter:
+              enabled: true
       - level: ">=35"
         config:
           can_view_antiraid: true
@@ -1074,11 +1256,15 @@ plugins:
               enabled: false
             hard_ref_filter:
               enabled: false
-            bad_name_filter:
+            hard_bad_name_filter:
               enabled: false
             queue_respond:
               enabled: false
-            suggestions_respond:
+            spoiler_filter:
+              enabled: false
+            dead_game_filter:
+              enabled: false
+            hard_dead_game_filter:
               enabled: false
             content_filter:
               enabled: false
@@ -1090,9 +1276,13 @@ plugins:
               enabled: false
             wildcard_filter:
               enabled: false
+            hard_domain_filter:
+              enabled: false
             domain_filter:
               enabled: false
             nitro_filter:
+              enabled: false
+            nitro_shadow_filter:
               enabled: false
             invite_filter:
               enabled: false
@@ -1237,6 +1427,7 @@ plugins:
     config:
       auto_refresh_interval: 900000
       can_manage: false
+      remove_user_reactions: false
     overrides:
       - level: ">=50"
         config:
@@ -1254,8 +1445,8 @@ plugins:
   # PERSIST
   persist:
     config:
-      persisted_roles: ["480376964356767755"] # Roles that should be added back when an user leaves and joins back
-      persist_nicknames: false
+      persisted_roles: ["480376964356767755", "637489989344690176"] # Roles that should be added back when an user leaves and joins back
+      persist_nicknames: true
       persist_voice_mutes: false
 
   # SLOWMODE
@@ -1422,7 +1613,7 @@ plugins:
           <:date:710921466782154862> {userMention(author)} scheduled a message to be posted to
           {channelMention(channel)} {repeatDetails}
         POSTED_SCHEDULED_MESSAGE: "<:date:710921466782154862> Posted scheduled message (`{messageId}`) to {channelMention(channel)} as scheduled by {userMention(author)}"
-        BOT_ALERT: "<:alarm:710915036956196911> {tmplEval(body)}"
+        BOT_ALERT: "<:alarm:710915036956196911> BOT ALERT {tmplEval(body)}"
         AUTOMOD_ACTION: "\U0001F916 Automod **{rule}** triggered by {userMention(users)} actions taken: **{actionsTaken}**\n{matchSummary}"
         SET_ANTIRAID_USER: "<:alarm:710915036956196911> {userMention(user)} set anti-raid to **{level}**"
         SET_ANTIRAID_AUTO: "<:alarm:710915036956196911> Anti-raid automatically set to **{level}**"
