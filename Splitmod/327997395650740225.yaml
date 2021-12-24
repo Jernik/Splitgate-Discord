@@ -260,8 +260,8 @@ plugins:
             ban:
               reason: "Offensive language."
 
-        #BAD NAME FILTER
-        bad_name_filter:
+        # HARD BAD NAME FILTER
+        hard_bad_name_filter:
           triggers:
             - match_words:
                 # Add words that should be filtered in the row below
@@ -288,7 +288,7 @@ plugins:
                 normalize: true
             - match_regex:
                 patterns:
-                  - "\\bn[!ali1]{1}(g){2}(a|er){1,2}" #n word version 1
+                  - "\\bn[!ali1\\|]{1}(g){2}(a|er){1,2}" #n word version 1
                   - "\\bn(@@|.i|i.){1}(g){1,2}(a|er){1,2}" #n word version 2
                   - "\\bf(4|a){1}(g){1,2}(ot|0t){0,}" #f word
                   - "\b.*卐.*\b" #swastika
