@@ -7,16 +7,17 @@ error_emoji: ❌ # <:cross:743132137586294856> custom emoji
 levels:
   "833572470920839178": 100 # Super Admin
   "485530182732611585": 100 # Admin
-  "403363046723944448": 60 # Community Team
+  "384837807069462528": 70 # Bot Master
+  "403363046723944448": 60 # Super Moderation Team 
   "358341736143257602": 50 # Moderation Team
   "328014561397440523": 50 # 1047 games
-  "384837807069462528": 50 # Discord bot
   "870870582005202965": 40 # Helper
-  "476528106585325580": 35 # Partnered Streamer
+  "476528106585325580": 37 # Partnered Streamer
+  "927076237439008828": 36 # File Perms
+  "927072284718547015": 35 # Gif Perms
   "909163295032877168": 34 # Level 75
   "900822270275096659": 33 # Level 50
   "900822184740655125": 32 # Level 40
-  "895664217573687346": 31 # Event Winner
   "637489989344690176": 30 # Community Creator
 
 plugins:
@@ -50,6 +51,7 @@ plugins:
       can_massban: false
       can_hidecase: false
       can_act_as_other: false
+      create_cases_for_manual_actions: true
     overrides:
       - level: ">=40"
         config:
@@ -68,6 +70,10 @@ plugins:
           can_addcase: true
           can_act_as_other: true
           can_hidecase: true
+          can_deletecase: true
+      - level: ">=60"
+        config:
+          can_massban: true
       - level: ">=100"
         config:
           can_massban: true
@@ -96,7 +102,7 @@ plugins:
       - level: ">=50"
         config:
           can_view_list: true
-      - level: ">=100"
+      - level: ">=70"
         config:
           can_cleanup: true
 
@@ -108,7 +114,7 @@ plugins:
       - level: ">=50"
         config:
           filter_zalgo: false
-
+          
   counters:
     config:
       can_view: true
@@ -126,6 +132,16 @@ plugins:
           decay:
             amount: 1
             every: 12h
+        autoactive:
+          per_user: true
+          triggers:
+            auto_active:
+              condition: ">=200"
+            auto_inactive:
+              condition: "<1"
+          decay:
+            amount: 200
+            every: 7d
         autogif:
           per_user: true
           triggers:
@@ -135,18 +151,6 @@ plugins:
             amount: 1
             every: 1m
         autodomain:
-          per_user: true
-          triggers:
-            auto_warning1:
-              condition: ">=2"
-            auto_warning2:
-              condition: ">=3"
-            auto_mute:
-              condition: ">=4"
-          decay:
-            amount: 1
-            every: 12h
-        autoinvite:
           per_user: true
           triggers:
             auto_warning1:
@@ -170,6 +174,28 @@ plugins:
           decay:
             amount: 1
             every: 12h
+        autoref:
+          per_user: true
+          triggers:
+            auto_warning1:
+              condition: ">=1"
+            auto_mute:
+              condition: ">=2"
+          decay:
+            amount: 1
+            every: 12h
+        autogame:
+          per_user: true
+          triggers:
+            auto_warning1:
+              condition: ">=1"
+            auto_mute:
+              condition: ">=2"
+            auto_ban:
+              condition: ">=3"
+          decay:
+            amount: 1
+            every: 72h
 
   # AUTOMOD
   automod:
@@ -190,6 +216,10 @@ plugins:
                   - "(?=(.|\\n)*\\btake)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
                   - "(?=(.|\\n)*\\bfortnite)(?=(.|\\n)*\\bcheat\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
                   - "(?=(.|\\n)*\\bleft)(?=(.|\\n)*\\bnitro\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
+                  - "(?=(.|\\n)*\\beveryone)(?=(.|\\n)*\\btake\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
+                  - "(?=(.|\\n)*everyone)(?=(.|\\n)*\\bfirst\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
+                  - "(?=(.|\\n)*first)(?=(.|\\n)*\\bwho\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
+             #     - "(?=(.|\\n)*everyone)(?=(.|\\n)*\\b\\b)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])(?!(.|\\n)*\\b(https:\/\/discord\\.gift)).+"
                 case_sensitive: false
                 normalize: true
                 strip_markdown: true
@@ -245,12 +275,13 @@ plugins:
                   - "\\bn[!ali1\\|]{1}(g){2}(a|er){1,2}" #n word version 1
                   - "\\bn(@@|.i|i.){1}(g){1,2}(a|er){1,2}" #n word version 2
                   - "\\bn{1,}i{1,}g{2,}e{1,}r{1,}" #n word version 3
-                  - "\\bf(4|a){1}(g){1,2}(ot|0t){0,}" #f word
+                  - "\\bf[4a]{1}(g){1,2}(ot|0t){0,}\\b" #f word
                 normalize: true
                 strip_markdown: true
                 match_messages: true
                 match_embeds: true
-                match_visible_names: false
+                match_visible_names: true
+                match_custom_status: true
                 case_sensitive: false
           actions:
             clean: true
@@ -259,50 +290,6 @@ plugins:
               auto_delete: 8s
             ban:
               reason: "Offensive language."
-
-        # HARD BAD NAME FILTER
-        hard_bad_name_filter:
-          triggers:
-            - match_words:
-                # Add words that should be filtered in the row below
-                words:
-                  [
-                    "/Vigger",
-                    "n199",
-                    "aggin",
-                    "🇳🇮🇬🇬",
-                    "Negro",
-                    "Nibba",
-                    "niqqa",
-                    "tranny",
-                    "ching chong",
-                    "﷽",
-                    "niga",
-                    "卐",
-                    "heil hitler",
-                    "spick",
-                    "spik",
-                  ]
-                case_sensitive: false
-                only_full_words: true
-                normalize: true
-            - match_regex:
-                patterns:
-                  - "\\bn[!ali1\\|]{1}(g){2}(a|er){1,2}" #n word version 1
-                  - "\\bn(@@|.i|i.){1}(g){1,2}(a|er){1,2}" #n word version 2
-                  - "\\bf(4|a){1}(g){1,2}(ot|0t){0,}" #f word
-                  - "\b.*卐.*\b" #swastika
-                match_messages: false
-                match_embeds: false
-                match_visible_names: true
-                case_sensitive: false
-          actions:
-            clean: true
-            reply:
-              text: "<@!{user.id}> please watch your language!"
-              auto_delete: 8s
-            ban:
-              reason: "Offensive nickname."
 
         # INVITE FILTER
         invite_filter:
@@ -313,6 +300,11 @@ plugins:
                   - "327997395650740225" # Splitgate
                   - "871552815246495808" # Splitgate LFG
                   - "886321099082698822" # Splitgate Support
+                  - "975406761563533402" # Splitgate French Server
+                  - "879799498698809376" # Splitgate Map Builders
+                  - "895789850362527794" # Splitgate SPS
+                  - "975962005271879710" # Splitgate Racers 
+                  - "871259258652602398" # Splitgate PUGs 
                 allow_group_dm_invites: false
                 match_messages: true
                 match_embeds: false
@@ -325,9 +317,9 @@ plugins:
             reply:
               text: "<@!{user.id}> please do not send invites to other Discord servers!"
               auto_delete: 5s
-            add_to_counter:
-              counter: "autoinvite"
-              amount: 1
+            mute:
+              reason: "Sending invites to another Discord server"
+              duration: 1h
 
         # MESSAGE SPAM
         message_filter:
@@ -360,7 +352,7 @@ plugins:
         mention_filter:
           triggers:
             - mention_spam:
-                amount: 6
+                amount: 5 
                 within: 3s
           actions:
             mute:
@@ -391,7 +383,7 @@ plugins:
                   - ([a-zA-Z0-9.+-]+\.ru\b)
                   - ([a-zA-Z0-9.+-]+\.com+\/traedoeffer\b)
                   - ([a-zA-Z0-9.+-]+\.com+\/tradeoffer\b)
-                  - "(?=(.|\\n)*\\bcheats)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]).+"
+                  #- "(?=(.|\\n)*\\bcheats)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]).+"
           actions:
             clean: true
             ban:
@@ -401,7 +393,7 @@ plugins:
         emoji_filter:
           triggers:
             - emoji_spam:
-                amount: 3
+                amount: 10
                 within: 3s
           actions:
             clean: true
@@ -434,9 +426,9 @@ plugins:
             reply:
               text: "<@!{user.id}> please do not post referral codes or ask people to DM you for referral codes!"
               auto_delete: 8s
-            mute:
-              reason: "Sharing referral codes."
-              duration: 12h
+            add_to_counter:
+              counter: "autoref"
+              amount: 1
 
         # REF FILTER
         ref_filter:
@@ -445,25 +437,6 @@ plugins:
                 # Add words that should be filtered in the row below
                 words:
                   [
-                    "referral",
-                    "ref",
-                    "referral",
-                    "refferal",
-                    "r34434al",
-                    "referal",
-                    "refururural",
-                    "r e f f e r a l c o d e s",
-                  ]
-                case_sensitive: false
-                only_full_words: true
-            - match_words:
-                # Add words that should be filtered in the row below
-                words:
-                  [
-                    "free splitcoin",
-                    "free sc",
-                    "free spl!tcoin",
-                    "free coin",
                     "use my code",
                     "use this code",
                     "use the code",
@@ -489,7 +462,7 @@ plugins:
                     "﷽",
                     "﷽",
                     "⣿",
-                    "nuts",
+               #     "nuts",
                     "No one cares how long it took you",
                     "pornhub",
                     "seggz",
@@ -516,10 +489,6 @@ plugins:
                     "r*pe",
                     "superstraight",
                     "super straight",
-                    "bitch",
-                    "bitches",
-                    "b1tch",
-                    "b1tches",
                     "milf",
                     "milfs",
                     "xp grind",
@@ -576,7 +545,6 @@ plugins:
                     "retrad",
                     "penis",
                     "whore",
-                    "suicide",
                     "kill myself",
                     "cuck",
                     "blowjob",
@@ -601,9 +569,12 @@ plugins:
                     "Deez",
                     "ligma",
                     "sugma",
+                    "testtesttest"
                   ]
                 case_sensitive: false
                 only_full_words: true
+                match_visible_names: true
+                match_custom_status: true
                 normalize: true
           actions:
             clean: true
@@ -638,11 +609,21 @@ plugins:
                     "?queue",
                     "While I do love Splitgate and all",
                     "George floyd",
-                    "They should add RAID SHADOW LEGENDS",
-                    "Raid Shadow Legends",
                     "█",
                     "░",
                     "Memecat",
+                    "13+ only 😂 open my profile 😏",
+                    "13+ only :joy: open my profile :smirk:",
+                    "13+ only ... you can click my name 😏",
+                    "OMG!! 😯  Open my profile but only if you are 13+ 🔞",
+                    "🔞 13+ only 😏 open my profile then 🔞",
+                    "🏳️‍🌈 LGBTQ safespace .. its in my bio. no straights allowed 🛑" ,
+                    "𝖮𝖭𝖫𝖸 𝖡𝖮𝖸𝖲 𝖢𝖧𝖤𝖢𝖪 𝖬𝖸 𝖡𝖨𝖮 😳🔞",
+                    "😳 BOYS ONLY!! 😉 check MY BIO 🔞",
+                    "😳 13+ BOYS ONLY!! 😉 check MY BIO 🔞",
+                    "I have a very special funny thing anyone who wants to laugh message me in private",
+                    "13+ BOYS ONLY!! 😉 check MY BIO 🔞",
+                    "😉 13+ only allowed... 🔞 in my BlO"
                   ]
                 case_sensitive: false
                 only_full_words: false
@@ -678,9 +659,6 @@ plugins:
                 match_embeds: false
           actions:
             clean: true
-            reply:
-              text: "<@!{user.id}> please watch your language!"
-              auto_delete: 5s
             ban:
               reason: "Offensive language."
 
@@ -693,6 +671,7 @@ plugins:
                   - discord.gg
                   - splitgateproseries.com
                   - discord.gift
+                  - tracker.gg
                 include_subdomains: true
                 match_embeds: false
                 only_real_links: true
@@ -700,6 +679,28 @@ plugins:
             clean: true
             reply:
               text: "<@!{user.id}> please do not post links from that domain in this channel!"
+              auto_delete: 5s
+            add_to_counter:
+              counter: "autodomain"
+              amount: 1
+              
+        # MUSIC DOMAIN FILTER
+        music_domain_filter:
+          enabled: false
+          triggers:
+            - match_links:
+                exclude_domains:
+                  - spotify.com
+                  - soundcloud.com
+                  - deezer.com
+                  - apple.com
+                include_subdomains: true
+                match_embeds: false
+                only_real_links: true
+          actions:
+            clean: true
+            reply:
+              text: "<@!{user.id}> please do not post links other than spotify, soundcloud, deezer and apple music in this channel!"
               auto_delete: 5s
             add_to_counter:
               counter: "autodomain"
@@ -722,6 +723,18 @@ plugins:
             add_to_counter:
               counter: "autogif"
               amount: 1
+              
+         # AUTO ACTIVE FILTER
+        active_filter:
+          #enabled: false
+          triggers:
+            - any_message: {}
+          actions:
+            log: false
+            add_to_counter:
+              counter: "autoactive"
+              amount: 1
+          cooldown: 20s
 
         # CONTENT FILTER
         content_filter:
@@ -738,8 +751,10 @@ plugins:
                   - 1047games.com
                   - facebook.com
                   - medium.com
+                  - medal.tv
+                  - reddit.com
                 exclude_regex:
-                  - 'discord\.gg\/splitgatelfg'
+                  - 'discord\.gg\/splitgatefr'
                   - 'support\@1047games\.com'
                   - 'splitgateproseries\.com'
                 include_subdomains: true
@@ -751,88 +766,20 @@ plugins:
               text: "<@!{user.id}> please do not post links from that domain in this channel!"
               auto_delete: 5s
 
-        # SERVER STATUS RESPONSE
-        servers_respond:
-          triggers:
-            - match_words:
-                words:
-                  - "servers down"
-                  - "servers up"
-                  - "server down"
-                  - "server up"
-                  - "servers still down"
-                  - "online down"
-                  - "is splitgate down"
-                  - "is splitgate up"
-                  - "servers back up"
-                  - "servers go back up"
-                  - "servers back"
-                  - "servers be up"
-                  - "server still down"
-                  - "splitgate still down"
-                  - "is online working"
-                  - "are the servers working"
-                  - "is the server working"
-                  - "are the servers online"
-                  - "servers are slow"
-                  - "are servers down"
-                  - "why arent servers up"
-                  - "are servers up"
-                  - "servers fucked"
-                  - "did the servers go down"
-                case_sensitive: false
-                only_full_words: false
-          actions:
-            clean: false
-            log: false
-            reply:
-              text: >-
-                <@!{user.id}> Follow <https://twitter.com/splitgatestatus?lang=en> for live service updates.
-              auto_delete: 10s
-
-        # QUEUE TIME RESPONSE
-        queue_respond:
-          triggers:
-            - match_words:
-                words:
-                  - "What is the q time?"
-                  - "how long is the queue"
-                  - "que time?"
-                  - "queue time?"
-                  - "q time?"
-                  - "how long is queue?"
-                  - "How long is queue"
-                  - "queue times?"
-                  - "How long is que"
-                  - "queue?"
-                  - "que?"
-                  - "queue time rn?"
-                  - "queue times rn?"
-                  - "q times?"
-                case_sensitive: false
-                only_full_words: false
-          actions:
-            clean: false
-            log: false
-            reply:
-              text: >-
-                <@!{user.id}> Find the current **estimated** queue time in the top channel of this server: <#870829581890887751>.
-              auto_delete: 10s
-
         # HARD DEAD GAME FILTER
         hard_dead_game_filter:
           triggers:
             - match_regex:
                 patterns:
-                  - '^dead\sgame$'
-                  - '^ded\sgame$'
+                  - '^dead\sgame.*$'
+                  - '^ded\sgame.*$'
                 case_sensitive: false
                 normalize: true
           actions:
             clean: true
-            log: false
-            ban:
-              reason: "General toxicity"
+            add_to_counter:
+              counter: "autogame"
+              amount: 1
 
         # DEAD GAME FILTER
         dead_game_filter:
@@ -846,23 +793,14 @@ plugins:
             clean: false
             log: true
 
-        # SPOILER FILTER
-        spoiler_filter:
+        # LFG FILTER
+        lfg_filter:
+          enabled: false
           triggers:
-            - match_regex:
-                patterns:
-                  - "(?=(.|\\n)*\\bspider)(?=(.|\\n)*man).+"
-                  - "(?=(.|\\n)*\\bpeter)(?=(.|\\n)*\\bparker).+"
-                  - "(?=(.|\\n)*\\bgreen)(?=(.|\\n)*\\bgoblin).+"
-                  - "(?=(.|\\n)*\\baunt)(?=(.|\\n)*\\bmay).+"
-                  - "(?=(.|\\n)*\\btobey)(?=(.|\\n)*\\bmaguire).+"
-                  - "(?=(.|\\n)*\\bandrew)(?=(.|\\n)*\\bgarfield).+"
-                  - "(?=(.|\\n)*\\btom)(?=(.|\\n)*\\bholland).+"
-                case_sensitive: false
-                normalize: true
+            - any_message: {}
           actions:
-            clean: true
             log: true
+            clean: true
 
         # PHONENUMBER FILTER
         phonenumber_filter:
@@ -884,6 +822,7 @@ plugins:
                 {matchSummary}
                 *Automatically Cleaned*
 
+
         # REPEATING CHARS FILTER
         char_filter:
           triggers:
@@ -901,7 +840,7 @@ plugins:
           triggers:
             - match_regex:
                 patterns:
-                  - ([A-Z\xC0-\xD6\xD8-\xDE\u0100\u0102\u0104\u0106\u0108\u010A\u010C\u010E\u0110\u0112\u0114\u0116\u0118\u011A\u011C\u011E\u0120\u0122\u0124\u0126\u0128\u012A\u012C\u012E\u0130\u0132\u0134\u0136\u0139\u013B\u013D\u013F\u0141\u0143\u0145\u0147\u014A\u014C\u014E\u0150\u0152\u0154\u0156\u0158\u015A\u015C\u015E\u0160\u0162\u0164\u0166\u0168\u016A\u016C\u016E\u0170\u0172\u0174\u0176\u0178\u0179\u017B\u017D\u0181\u0182\u0184\u0186\u0187\u0189-\u018B\u018E-\u0191\u0193\u0194\u0196-\u0198\u019C\u019D\u019F\u01A0\u01A2\u01A4\u01A6\u01A7\u01A9\u01AC\u01AE\u01AF\u01B1-\u01B3\u01B5\u01B7\u01B8\u01BC\u01C4\u01C7\u01CA\u01CD\u01CF\u01D1\u01D3\u01D5\u01D7\u01D9\u01DB\u01DE\u01E0\u01E2\u01E4\u01E6\u01E8\u01EA\u01EC\u01EE\u01F1\u01F4\u01F6-\u01F8\u01FA\u01FC\u01FE\u0200\u0202\u0204\u0206\u0208\u020A\u020C\u020E\u0210\u0212\u0214\u0216\u0218\u021A\u021C\u021E\u0220\u0222\u0224\u0226\u0228\u022A\u022C\u022E\u0230\u0232\u023A\u023B\u023D\u023E\u0241\u0243-\u0246\u0248\u024A\u024C\u024E\u0370\u0372\u0376\u037F\u0386\u0388-\u038A\u038C\u038E\u038F\u0391-\u03A1\u03A3-\u03AB\u03CF\u03D2-\u03D4\u03D8\u03DA\u03DC\u03DE\u03E0\u03E2\u03E4\u03E6\u03E8\u03EA\u03EC\u03EE\u03F4\u03F7\u03F9\u03FA\u03FD-\u042F\u0460\u0462\u0464\u0466\u0468\u046A\u046C\u046E\u0470\u0472\u0474\u0476\u0478\u047A\u047C\u047E\u0480\u048A\u048C\u048E\u0490\u0492\u0494\u0496\u0498\u049A\u049C\u049E\u04A0\u04A2\u04A4\u04A6\u04A8\u04AA\u04AC\u04AE\u04B0\u04B2\u04B4\u04B6\u04B8\u04BA\u04BC\u04BE\u04C0\u04C1\u04C3\u04C5\u04C7\u04C9\u04CB\u04CD\u04D0\u04D2\u04D4\u04D6\u04D8\u04DA\u04DC\u04DE\u04E0\u04E2\u04E4\u04E6\u04E8\u04EA\u04EC\u04EE\u04F0\u04F2\u04F4\u04F6\u04F8\u04FA\u04FC\u04FE\u0500\u0502\u0504\u0506\u0508\u050A\u050C\u050E\u0510\u0512\u0514\u0516\u0518\u051A\u051C\u051E\u0520\u0522\u0524\u0526\u0528\u052A\u052C\u052E\u0531-\u0556\u10A0-\u10C5\u10C7\u10CD\u13A0-\u13F5\u1E00\u1E02\u1E04\u1E06\u1E08\u1E0A\u1E0C\u1E0E\u1E10\u1E12\u1E14\u1E16\u1E18\u1E1A\u1E1C\u1E1E\u1E20\u1E22\u1E24\u1E26\u1E28\u1E2A\u1E2C\u1E2E\u1E30\u1E32\u1E34\u1E36\u1E38\u1E3A\u1E3C\u1E3E\u1E40\u1E42\u1E44\u1E46\u1E48\u1E4A\u1E4C\u1E4E\u1E50\u1E52\u1E54\u1E56\u1E58\u1E5A\u1E5C\u1E5E\u1E60\u1E62\u1E64\u1E66\u1E68\u1E6A\u1E6C\u1E6E\u1E70\u1E72\u1E74\u1E76\u1E78\u1E7A\u1E7C\u1E7E\u1E80\u1E82\u1E84\u1E86\u1E88\u1E8A\u1E8C\u1E8E\u1E90\u1E92\u1E94\u1E9E\u1EA0\u1EA2\u1EA4\u1EA6\u1EA8\u1EAA\u1EAC\u1EAE\u1EB0\u1EB2\u1EB4\u1EB6\u1EB8\u1EBA\u1EBC\u1EBE\u1EC0\u1EC2\u1EC4\u1EC6\u1EC8\u1ECA\u1ECC\u1ECE\u1ED0\u1ED2\u1ED4\u1ED6\u1ED8\u1EDA\u1EDC\u1EDE\u1EE0\u1EE2\u1EE4\u1EE6\u1EE8\u1EEA\u1EEC\u1EEE\u1EF0\u1EF2\u1EF4\u1EF6\u1EF8\u1EFA\u1EFC\u1EFE\u1F08-\u1F0F\u1F18-\u1F1D\u1F28-\u1F2F\u1F38-\u1F3F\u1F48-\u1F4D\u1F59\u1F5B\u1F5D\u1F5F\u1F68-\u1F6F\u1FB8-\u1FBB\u1FC8-\u1FCB\u1FD8-\u1FDB\u1FE8-\u1FEC\u1FF8-\u1FFB\u2102\u2107\u210B-\u210D\u2110-\u2112\u2115\u2119-\u211D\u2124\u2126\u2128\u212A-\u212D\u2130-\u2133\u213E\u213F\u2145\u2183\u2C00-\u2C2E\u2C60\u2C62-\u2C64\u2C67\u2C69\u2C6B\u2C6D-\u2C70\u2C72\u2C75\u2C7E-\u2C80\u2C82\u2C84\u2C86\u2C88\u2C8A\u2C8C\u2C8E\u2C90\u2C92\u2C94\u2C96\u2C98\u2C9A\u2C9C\u2C9E\u2CA0\u2CA2\u2CA4\u2CA6\u2CA8\u2CAA\u2CAC\u2CAE\u2CB0\u2CB2\u2CB4\u2CB6\u2CB8\u2CBA\u2CBC\u2CBE\u2CC0\u2CC2\u2CC4\u2CC6\u2CC8\u2CCA\u2CCC\u2CCE\u2CD0\u2CD2\u2CD4\u2CD6\u2CD8\u2CDA\u2CDC\u2CDE\u2CE0\u2CE2\u2CEB\u2CED\u2CF2\uA640\uA642\uA644\uA646\uA648\uA64A\uA64C\uA64E\uA650\uA652\uA654\uA656\uA658\uA65A\uA65C\uA65E\uA660\uA662\uA664\uA666\uA668\uA66A\uA66C\uA680\uA682\uA684\uA686\uA688\uA68A\uA68C\uA68E\uA690\uA692\uA694\uA696\uA698\uA69A\uA722\uA724\uA726\uA728\uA72A\uA72C\uA72E\uA732\uA734\uA736\uA738\uA73A\uA73C\uA73E\uA740\uA742\uA744\uA746\uA748\uA74A\uA74C\uA74E\uA750\uA752\uA754\uA756\uA758\uA75A\uA75C\uA75E\uA760\uA762\uA764\uA766\uA768\uA76A\uA76C\uA76E\uA779\uA77B\uA77D\uA77E\uA780\uA782\uA784\uA786\uA78B\uA78D\uA790\uA792\uA796\uA798\uA79A\uA79C\uA79E\uA7A0\uA7A2\uA7A4\uA7A6\uA7A8\uA7AA-\uA7AD\uA7B0-\uA7B4\uA7B6\uFF21-\uFF3A]|\uD806[\uDCA0-\uDCBF]|\uD803[\uDC80-\uDCB2]|\uD801[\uDC00-\uDC27]|\uD835[\uDC00-\uDC19\uDC34-\uDC4D\uDC68-\uDC81\uDC9C\uDC9E\uDC9F\uDCA2\uDCA5\uDCA6\uDCA9-\uDCAC\uDCAE-\uDCB5\uDCD0-\uDCE9\uDD04\uDD05\uDD07-\uDD0A\uDD0D-\uDD14\uDD16-\uDD1C\uDD38\uDD39\uDD3B-\uDD3E\uDD40-\uDD44\uDD46\uDD4A-\uDD50\uDD6C-\uDD85\uDDA0-\uDDB9\uDDD4-\uDDED\uDE08-\uDE21\uDE3C-\uDE55\uDE70-\uDE89\uDEA8-\uDEC0\uDEE2-\uDEFA\uDF1C-\uDF34\uDF56-\uDF6E\uDF90-\uDFA8\uDFCA]){10,}
+                  - ([A-Z\xC0-\xD6\xD8-\xDE\u0100\u0102\u0104\u0106\u0108\u010A\u010C\u010E\u0110\u0112\u0114\u0116\u0118\u011A\u011C\u011E\u0120\u0122\u0124\u0126\u0128\u012A\u012C\u012E\u0130\u0132\u0134\u0136\u0139\u013B\u013D\u013F\u0141\u0143\u0145\u0147\u014A\u014C\u014E\u0150\u0152\u0154\u0156\u0158\u015A\u015C\u015E\u0160\u0162\u0164\u0166\u0168\u016A\u016C\u016E\u0170\u0172\u0174\u0176\u0178\u0179\u017B\u017D\u0181\u0182\u0184\u0186\u0187\u0189-\u018B\u018E-\u0191\u0193\u0194\u0196-\u0198\u019C\u019D\u019F\u01A0\u01A2\u01A4\u01A6\u01A7\u01A9\u01AC\u01AE\u01AF\u01B1-\u01B3\u01B5\u01B7\u01B8\u01BC\u01C4\u01C7\u01CA\u01CD\u01CF\u01D1\u01D3\u01D5\u01D7\u01D9\u01DB\u01DE\u01E0\u01E2\u01E4\u01E6\u01E8\u01EA\u01EC\u01EE\u01F1\u01F4\u01F6-\u01F8\u01FA\u01FC\u01FE\u0200\u0202\u0204\u0206\u0208\u020A\u020C\u020E\u0210\u0212\u0214\u0216\u0218\u021A\u021C\u021E\u0220\u0222\u0224\u0226\u0228\u022A\u022C\u022E\u0230\u0232\u023A\u023B\u023D\u023E\u0241\u0243-\u0246\u0248\u024A\u024C\u024E\u0370\u0372\u0376\u037F\u0386\u0388-\u038A\u038C\u038E\u038F\u0391-\u03A1\u03A3-\u03AB\u03CF\u03D2-\u03D4\u03D8\u03DA\u03DC\u03DE\u03E0\u03E2\u03E4\u03E6\u03E8\u03EA\u03EC\u03EE\u03F4\u03F7\u03F9\u03FA\u03FD-\u042F\u0460\u0462\u0464\u0466\u0468\u046A\u046C\u046E\u0470\u0472\u0474\u0476\u0478\u047A\u047C\u047E\u0480\u048A\u048C\u048E\u0490\u0492\u0494\u0496\u0498\u049A\u049C\u049E\u04A0\u04A2\u04A4\u04A6\u04A8\u04AA\u04AC\u04AE\u04B0\u04B2\u04B4\u04B6\u04B8\u04BA\u04BC\u04BE\u04C0\u04C1\u04C3\u04C5\u04C7\u04C9\u04CB\u04CD\u04D0\u04D2\u04D4\u04D6\u04D8\u04DA\u04DC\u04DE\u04E0\u04E2\u04E4\u04E6\u04E8\u04EA\u04EC\u04EE\u04F0\u04F2\u04F4\u04F6\u04F8\u04FA\u04FC\u04FE\u0500\u0502\u0504\u0506\u0508\u050A\u050C\u050E\u0510\u0512\u0514\u0516\u0518\u051A\u051C\u051E\u0520\u0522\u0524\u0526\u0528\u052A\u052C\u052E\u0531-\u0556\u10A0-\u10C5\u10C7\u10CD\u13A0-\u13F5\u1E00\u1E02\u1E04\u1E06\u1E08\u1E0A\u1E0C\u1E0E\u1E10\u1E12\u1E14\u1E16\u1E18\u1E1A\u1E1C\u1E1E\u1E20\u1E22\u1E24\u1E26\u1E28\u1E2A\u1E2C\u1E2E\u1E30\u1E32\u1E34\u1E36\u1E38\u1E3A\u1E3C\u1E3E\u1E40\u1E42\u1E44\u1E46\u1E48\u1E4A\u1E4C\u1E4E\u1E50\u1E52\u1E54\u1E56\u1E58\u1E5A\u1E5C\u1E5E\u1E60\u1E62\u1E64\u1E66\u1E68\u1E6A\u1E6C\u1E6E\u1E70\u1E72\u1E74\u1E76\u1E78\u1E7A\u1E7C\u1E7E\u1E80\u1E82\u1E84\u1E86\u1E88\u1E8A\u1E8C\u1E8E\u1E90\u1E92\u1E94\u1E9E\u1EA0\u1EA2\u1EA4\u1EA6\u1EA8\u1EAA\u1EAC\u1EAE\u1EB0\u1EB2\u1EB4\u1EB6\u1EB8\u1EBA\u1EBC\u1EBE\u1EC0\u1EC2\u1EC4\u1EC6\u1EC8\u1ECA\u1ECC\u1ECE\u1ED0\u1ED2\u1ED4\u1ED6\u1ED8\u1EDA\u1EDC\u1EDE\u1EE0\u1EE2\u1EE4\u1EE6\u1EE8\u1EEA\u1EEC\u1EEE\u1EF0\u1EF2\u1EF4\u1EF6\u1EF8\u1EFA\u1EFC\u1EFE\u1F08-\u1F0F\u1F18-\u1F1D\u1F28-\u1F2F\u1F38-\u1F3F\u1F48-\u1F4D\u1F59\u1F5B\u1F5D\u1F5F\u1F68-\u1F6F\u1FB8-\u1FBB\u1FC8-\u1FCB\u1FD8-\u1FDB\u1FE8-\u1FEC\u1FF8-\u1FFB\u2102\u2107\u210B-\u210D\u2110-\u2112\u2115\u2119-\u211D\u2124\u2126\u2128\u212A-\u212D\u2130-\u2133\u213E\u213F\u2145\u2183\u2C00-\u2C2E\u2C60\u2C62-\u2C64\u2C67\u2C69\u2C6B\u2C6D-\u2C70\u2C72\u2C75\u2C7E-\u2C80\u2C82\u2C84\u2C86\u2C88\u2C8A\u2C8C\u2C8E\u2C90\u2C92\u2C94\u2C96\u2C98\u2C9A\u2C9C\u2C9E\u2CA0\u2CA2\u2CA4\u2CA6\u2CA8\u2CAA\u2CAC\u2CAE\u2CB0\u2CB2\u2CB4\u2CB6\u2CB8\u2CBA\u2CBC\u2CBE\u2CC0\u2CC2\u2CC4\u2CC6\u2CC8\u2CCA\u2CCC\u2CCE\u2CD0\u2CD2\u2CD4\u2CD6\u2CD8\u2CDA\u2CDC\u2CDE\u2CE0\u2CE2\u2CEB\u2CED\u2CF2\uA640\uA642\uA644\uA646\uA648\uA64A\uA64C\uA64E\uA650\uA652\uA654\uA656\uA658\uA65A\uA65C\uA65E\uA660\uA662\uA664\uA666\uA668\uA66A\uA66C\uA680\uA682\uA684\uA686\uA688\uA68A\uA68C\uA68E\uA690\uA692\uA694\uA696\uA698\uA69A\uA722\uA724\uA726\uA728\uA72A\uA72C\uA72E\uA732\uA734\uA736\uA738\uA73A\uA73C\uA73E\uA740\uA742\uA744\uA746\uA748\uA74A\uA74C\uA74E\uA750\uA752\uA754\uA756\uA758\uA75A\uA75C\uA75E\uA760\uA762\uA764\uA766\uA768\uA76A\uA76C\uA76E\uA779\uA77B\uA77D\uA77E\uA780\uA782\uA784\uA786\uA78B\uA78D\uA790\uA792\uA796\uA798\uA79A\uA79C\uA79E\uA7A0\uA7A2\uA7A4\uA7A6\uA7A8\uA7AA-\uA7AD\uA7B0-\uA7B4\uA7B6\uFF21-\uFF3A]|\uD806[\uDCA0-\uDCBF]|\uD803[\uDC80-\uDCB2]|\uD801[\uDC00-\uDC27]|\uD835[\uDC00-\uDC19\uDC34-\uDC4D\uDC68-\uDC81\uDC9C\uDC9E\uDC9F\uDCA2\uDCA5\uDCA6\uDCA9-\uDCAC\uDCAE-\uDCB5\uDCD0-\uDCE9\uDD04\uDD05\uDD07-\uDD0A\uDD0D-\uDD14\uDD16-\uDD1C\uDD38\uDD39\uDD3B-\uDD3E\uDD40-\uDD44\uDD46\uDD4A-\uDD50\uDD6C-\uDD85\uDDA0-\uDDB9\uDDD4-\uDDED\uDE08-\uDE21\uDE3C-\uDE55\uDE70-\uDE89\uDEA8-\uDEC0\uDEE2-\uDEFA\uDF1C-\uDF34\uDF56-\uDF6E\uDF90-\uDFA8\uDFCA]){15,}
                 case_sensitive: true
           actions:
             clean: true
@@ -985,41 +924,6 @@ plugins:
               duration: 12h
               postInCaseLog: true
 
-        #invite filter escalation
-        automodc7:
-          triggers:
-            - counter_trigger:
-                counter: "autoinvite"
-                trigger: "auto_warning1"
-          actions:
-            log: true
-            warn:
-              reason: "Please do not post invites"
-              postInCaseLog: true
-
-        automodc8:
-          triggers:
-            - counter_trigger:
-                counter: "autoinvite"
-                trigger: "auto_warning2"
-          actions:
-            log: true
-            warn:
-              reason: "The final warning, please do not post invites to other servers"
-              postInCaseLog: true
-
-        automodc9:
-          triggers:
-            - counter_trigger:
-                counter: "autoinvite"
-                trigger: "auto_mute"
-          actions:
-            log: true
-            mute:
-              reason: "Automatic punishment escalation (strike 3)"
-              duration: 12h
-              postInCaseLog: true
-
         #spam filter escalation
         automodc10:
           triggers:
@@ -1087,6 +991,86 @@ plugins:
             change_nickname:
               name: >-
                 Change Nickname | Auto
+                
+        #ref filter escalation
+        automodc15:
+          triggers:
+            - counter_trigger:
+                counter: "autoref"
+                trigger: "auto_warning1"
+          actions:
+            log: true
+            warn:
+              reason: "Please do not post referral codes or ask people to DM you for referral codes!"
+              postInCaseLog: true
+              
+        automodc16:
+          triggers:
+            - counter_trigger:
+                counter: "autoref"
+                trigger: "auto_mute"
+          actions:
+            log: true
+            mute:
+              reason: "Sharing referral codes."
+              duration: 12h
+              postInCaseLog: true
+              
+        #dead game filter escalation
+        automodc17:
+          triggers:
+            - counter_trigger:
+                counter: "autogame"
+                trigger: "auto_warning1"
+          actions:
+            log: true
+            warn:
+              reason: "Please don't be disrespectful, it doesn't add anything to the conversation"
+              postInCaseLog: true
+
+        automodc18:
+          triggers:
+            - counter_trigger:
+                counter: "autogame"
+                trigger: "auto_mute"
+          actions:
+            log: true
+            mute:
+              reason: "Dead game comments (strike 2)"
+              duration: 12h
+              postInCaseLog: true
+              
+        automodc19:
+          triggers:
+            - counter_trigger:
+                counter: "autogame"
+                trigger: "auto_ban"
+          actions:
+            clean: true
+            ban:
+              reason: "Dead game comments (strike 3)"
+
+        #auto active
+        automodc20:
+          triggers:
+            - counter_trigger:
+                counter: "autoactive"
+                trigger: "auto_active"
+          actions:
+            log: true
+            add_roles:
+              - '997533091503558726'
+              
+        automodc21:
+          triggers:
+            - counter_trigger:
+                counter: "autoactive"
+                trigger: "auto_inactive"
+          actions:
+            log: true
+            remove_roles:
+              - '997533091503558726'
+
 
         # todo: this doesn't work
         sticker_filter:
@@ -1147,7 +1131,7 @@ plugins:
               enabled: false
             content_filter:
               enabled: true
-      - channel: "827084869788106792" # creator clips
+      - channel: "998207992447123486" # clips     
         config:
           rules:
             hard_domain_filter:
@@ -1177,8 +1161,26 @@ plugins:
               enabled: false
             hard_ref_filter:
               enabled: false
-            hard_bad_name_filter:
+
+      - channel: "937768949091827713" # find a group
+        config:
+          rules:
+            lfg_filter:
+              enabled: true
+              
+      - channel: "980167399892484126" # music
+        config:
+          rules:
+            hard_domain_filter:
               enabled: false
+            music_domain_filter:
+              enabled: true
+              
+      - channel: "763981218810691585" # test channel
+        config:
+          rules:
+            active_filter:
+              enabled: true
 
       - level: ">=30"
         config:
@@ -1192,16 +1194,10 @@ plugins:
               enabled: false
             hard_ref_filter:
               enabled: true
-            hard_bad_name_filter:
-              enabled: false
-            queue_respond:
-              enabled: false
-            spoiler_filter:
-              enabled: true
             dead_game_filter:
               enabled: false
             hard_dead_game_filter:
-              enabled: false
+              enabled: true
             message_filter:
               enabled: false
             attachment_filter:
@@ -1215,7 +1211,7 @@ plugins:
             nitro_shadow_filter:
               enabled: false
             invite_filter:
-              enabled: false
+              enabled: true
             emoji_filter:
               enabled: false
             link_filter:
@@ -1224,15 +1220,13 @@ plugins:
               enabled: false
             max_lines:
               enabled: false
-            servers_respond:
-              enabled: false
             phonenumber_filter:
               enabled: false
             hard_word_filter:
               enabled: true
             spammed_words_filter:
               enabled: false
-      - level: ">=31"
+      - level: ">=32"
         config:
           can_view_antiraid: true
           rules:
@@ -1242,7 +1236,7 @@ plugins:
               enabled: false
             domain_filter:
               enabled: true
-      - level: ">=35"
+      - level: ">=37"
         config:
           can_view_antiraid: true
           rules:
@@ -1256,12 +1250,6 @@ plugins:
               enabled: false
             hard_ref_filter:
               enabled: false
-            hard_bad_name_filter:
-              enabled: false
-            queue_respond:
-              enabled: false
-            spoiler_filter:
-              enabled: false
             dead_game_filter:
               enabled: false
             hard_dead_game_filter:
@@ -1294,11 +1282,18 @@ plugins:
               enabled: false
             max_lines:
               enabled: false
-            servers_respond:
-              enabled: false
             phonenumber_filter:
               enabled: false
             spammed_words_filter:
+              enabled: false
+      - level: ">=40"
+        config:
+          rules:
+            active_filter:
+              enabled: false
+            lfg_filter:
+              enabled: false
+            music_domain_filter:
               enabled: false
       - level: ">=100"
         config:
@@ -1369,6 +1364,10 @@ plugins:
           can_jumbo: true
           can_avatar: true
           can_ping: true
+      - level: ">=70"
+        config:
+          can_about: true
+          can_nickname: true
       - level: ">=100"
         config:
           can_reload_guild: true
@@ -1389,7 +1388,7 @@ plugins:
     config:
       can_post: false
     overrides:
-      - level: ">=100"
+      - level: ">=70"
         config:
           can_post: true
 
@@ -1421,18 +1420,17 @@ plugins:
         config:
           can_where: true
           can_alert: true
-
-  # REACTION ROLES
-  reaction_roles:
-    config:
-      auto_refresh_interval: 900000
-      can_manage: false
-      remove_user_reactions: false
-    overrides:
-      - level: ">=50"
-        config:
-          can_manage: true
-
+          
+  # SECECT MENU ROLES
+  select_menu_roles:
+   config:
+     select_groups: {}
+     can_manage: false
+   overrides:
+     - level: '>=50'
+       config:
+         can_manage: true
+         
   # AUTO REACTIONS
   auto_reactions:
     config:
@@ -1468,6 +1466,14 @@ plugins:
       can_mass_assign: false
       assignable_roles:
         - "637489989344690176" #community-creator
+        - "909163295032877168" # level 75
+        - "900822270275096659" # level 50 
+        - "900822184740655125" # level 40
+        - "900821788500557834" # level 25
+        - "900821275591729203" # level 15
+        - "900820893914247189" # level 10
+        - "900820759189028934" # level 5
+        - "925505137038999593" # level 0
     overrides:
       - level: ">=50"
         config:
@@ -1575,8 +1581,8 @@ plugins:
         ROLE_EDIT: "<:work:710912650099425341> Role **{role.name}** (`{role.id}`) was edited"
         MESSAGE_EDIT: >-
           <:pencil:883434325008334939> {userMention(user)} edited their message (`{after.id}`) in
-          {channelMention(channel)}:
 
+          {channelMention(channel)}:
           **Before:**{messageSummary(before)}**After:**{messageSummary(after)}
         MESSAGE_DELETE: "<:trashcan:883434521930919987> Deleted message (`{message.id}`) from {userMention(user)} {messageSummary(message)}"
         MESSAGE_DELETE_BULK: "<:trashcan:883434521930919987> **{count}** messages deleted in {channelMention(channel)} ({archiveUrl})"
