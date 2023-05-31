@@ -18,6 +18,7 @@ levels:
   "909163295032877168": 34 # Level 75
   "900822270275096659": 33 # Level 50
   "900822184740655125": 32 # Level 40
+  "900821788500557834": 31 # Level 25
   "637489989344690176": 30 # Community Creator
 
 plugins:
@@ -1226,7 +1227,7 @@ plugins:
               enabled: true
             spammed_words_filter:
               enabled: false
-      - level: ">=32"
+      - level: ">=31"
         config:
           can_view_antiraid: true
           rules:
