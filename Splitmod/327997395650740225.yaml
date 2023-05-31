@@ -136,11 +136,11 @@ plugins:
           per_user: true
           triggers:
             auto_active:
-              condition: ">=200"
+              condition: ">=50"
             auto_inactive:
               condition: "<1"
           decay:
-            amount: 200
+            amount: 50
             every: 7d
         autogif:
           per_user: true
