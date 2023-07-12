@@ -120,6 +120,7 @@ plugins:
     config:
       can_view: true
       can_edit: true
+      can_reset_all: true
       counters:
         automod:
           per_user: true
@@ -492,7 +493,6 @@ plugins:
                     "super straight",
                     "milf",
                     "milfs",
-                    "xp grind",
                     "raped",
                     "Cum",
                     "Rape",
