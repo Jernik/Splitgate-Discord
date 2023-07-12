@@ -1287,7 +1287,7 @@ plugins:
               enabled: false
             spammed_words_filter:
               enabled: false
-      - level: ">=40"
+      - level: ">=41"
         config:
           rules:
             active_filter:
