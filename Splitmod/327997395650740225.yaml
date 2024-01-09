@@ -12,13 +12,14 @@ levels:
   "358341736143257602": 50 # Moderation Team
   "328014561397440523": 50 # 1047 games
   "870870582005202965": 40 # Helper
-  "476528106585325580": 37 # Partnered Streamer
-  "927076237439008828": 36 # File Perms
-  "927072284718547015": 35 # Gif Perms
-  "909163295032877168": 34 # Level 75
-  "900822270275096659": 33 # Level 50
-  "900822184740655125": 32 # Level 40
-  "900821788500557834": 31 # Level 25
+  "476528106585325580": 38 # Partnered Streamer
+  "927076237439008828": 37 # File Perms
+  "927072284718547015": 36 # Gif Perms
+  "909163295032877168": 35 # Level 75
+  "900822270275096659": 34 # Level 50
+  "900822184740655125": 33 # Level 40
+  "900821788500557834": 32 # Level 25
+  "900821275591729203": 31 # Level 15
   "637489989344690176": 30 # Community Creator
 
 plugins:
@@ -1237,7 +1238,7 @@ plugins:
               enabled: false
             domain_filter:
               enabled: true
-      - level: ">=37"
+      - level: ">=38"
         config:
           can_view_antiraid: true
           rules:
