@@ -284,6 +284,8 @@ plugins:
                 match_messages: true
                 match_embeds: true
                 match_visible_names: true
+                match_usernames: true
+                match_nicknames: true
                 match_custom_status: true
                 case_sensitive: false
           actions:
@@ -576,6 +578,8 @@ plugins:
                 case_sensitive: false
                 only_full_words: true
                 match_visible_names: true
+                match_usernames: true
+                match_nicknames: true
                 match_custom_status: true
                 normalize: true
           actions:
