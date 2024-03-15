@@ -388,6 +388,7 @@ plugins:
                   - ([a-zA-Z0-9.+-]+\.ru\b)
                   - ([a-zA-Z0-9.+-]+\.com+\/traedoeffer\b)
                   - ([a-zA-Z0-9.+-]+\.com+\/tradeoffer\b)
+                  - (\[steamcommunity\.com\/gift.+\b)
                   #- "(?=(.|\\n)*\\bcheats)(?=(.|\\n)*\\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]).+"
           actions:
             clean: true
