@@ -690,6 +690,40 @@ plugins:
             add_to_counter:
               counter: "autodomain"
               amount: 1
+
+         # SOFT DOMAIN FILTER
+        soft_domain_filter:
+          enabled: false
+          triggers:
+            - match_links:
+                exclude_domains: # When updating this list also update the standard domains in the fanart and video/clips filter below
+                  - splitgate.com
+                  - discord.gg
+                  - splitgateproseries.com
+                  - discord.gift
+                  - tracker.gg
+                  - youtube.com
+                  - youtu.be
+                  - tiktok.com
+                  - x.com
+                  - twitch.tv
+                  - twitter.com
+                  - vimeo.com
+                  - facebook.com
+                  - instagram.com
+                  - medal.tv
+                  - reddit.com
+                include_subdomains: true
+                match_embeds: false
+                only_real_links: true
+          actions:
+            clean: true
+            reply:
+              text: "<@!{user.id}> please do not post links from that domain in this channel!"
+              auto_delete: 5s
+            add_to_counter:
+              counter: "autodomain"
+              amount: 1
               
         # MUSIC DOMAIN FILTER
         music_domain_filter:
@@ -1182,7 +1216,23 @@ plugins:
               enabled: false
             music_domain_filter:
               enabled: true
-              
+
+      - channel: "1212230850784006205" 
+        config:
+          rules:
+            hard_domain_filter:
+              enabled: false
+            soft_domain_filter:
+              enabled: true
+
+      - channel: "1219274610420486144" 
+        config:
+          rules:
+            hard_domain_filter:
+              enabled: false
+            soft_domain_filter:
+              enabled: true
+
       - channel: "763981218810691585" # test channel
         config:
           rules:
