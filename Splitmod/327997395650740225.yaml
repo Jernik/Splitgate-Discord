@@ -679,6 +679,17 @@ plugins:
                   - splitgateproseries.com
                   - discord.gift
                   - tracker.gg
+                  - youtube.com
+                  - youtu.be
+                  - tiktok.com
+                  - x.com
+                  - twitch.tv
+                  - twitter.com
+                  - vimeo.com
+                  - facebook.com
+                  - instagram.com
+                  - medal.tv
+                  - reddit.com
                 include_subdomains: true
                 match_embeds: false
                 only_real_links: true
@@ -1225,6 +1236,15 @@ plugins:
             soft_domain_filter:
               enabled: true
 
+      - channel: "1219274610420486144" 
+        config:
+          rules:
+            hard_domain_filter:
+              enabled: false
+            soft_domain_filter:
+              enabled: true
+
+
       - channel: "763981218810691585" # test channel
         config:
           rules:
@@ -1347,15 +1367,6 @@ plugins:
       - level: ">=100"
         config:
           can_set_antiraid: true
-
-      - channel: "1219274610420486144" 
-        config:
-          rules:
-            hard_domain_filter:
-              enabled: false
-            soft_domain_filter:
-              enabled: true
-
 
   # SPAM
   spam:
