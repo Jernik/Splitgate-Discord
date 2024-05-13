@@ -310,6 +310,7 @@ plugins:
                   - "895789850362527794" # Splitgate SPS
                   - "975962005271879710" # Splitgate Racers 
                   - "871259258652602398" # Splitgate PUGs 
+                  - "1029247078527938610" # Splitgate SCL server
                 allow_group_dm_invites: false
                 match_messages: true
                 match_embeds: false
