@@ -716,6 +716,19 @@ plugins:
                   - splitgateproseries.com
                   - discord.gift
                   - tracker.gg
+                  - youtube.com
+                  - youtu.be
+                  - tiktok.com
+                  - x.com
+                  - twitch.tv
+                  - twitter.com
+                  - vimeo.com
+                  - facebook.com
+                  - instagram.com
+                  - medal.tv
+                  - reddit.com
+                  - xbox.com
+                  - t.co
                 include_subdomains: true
                 match_embeds: false
                 only_real_links: true
@@ -740,6 +753,19 @@ plugins:
                   - splitgateproseries.com
                   - discord.gift
                   - tracker.gg
+                  - youtube.com
+                  - youtu.be
+                  - tiktok.com
+                  - x.com
+                  - twitch.tv
+                  - twitter.com
+                  - vimeo.com
+                  - facebook.com
+                  - instagram.com
+                  - medal.tv
+                  - reddit.com
+                  - xbox.com
+                  - t.co
                 include_subdomains: true
                 match_embeds: false
                 only_real_links: true
