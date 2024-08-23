@@ -410,6 +410,7 @@ plugins:
 
         # MAX LINES
         max_lines:
+          enabled: false
           triggers:
             - line_spam:
                 amount: 20
