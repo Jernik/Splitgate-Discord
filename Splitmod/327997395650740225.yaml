@@ -86,7 +86,7 @@ plugins:
   # MUTES
   mutes:
     config:
-      mute_role: "480376964356767755" # config
+      mute_role: null #"480376964356767755" # config
       move_to_voice_channel: null
       dm_on_mute: true
       dm_on_update: false
