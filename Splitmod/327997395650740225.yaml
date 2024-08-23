@@ -1255,6 +1255,11 @@ plugins:
           rules:
             active_filter:
               enabled: true
+      - channel: "1271087482137481307"
+        config:
+          rules:
+            max_lines:
+              enabled: false
 
       - level: ">=30"
         config:
