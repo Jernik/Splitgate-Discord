@@ -423,6 +423,7 @@ plugins:
 
         # HARD REF FILTER
         hard_ref_filter:
+          enabled: false
           triggers:
             - match_regex:
                 patterns:
