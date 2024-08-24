@@ -678,6 +678,7 @@ plugins:
             - match_links:
                 exclude_domains: # When updating this list also update the standard domains in the fanart and video/clips filter below
                   - splitgate.com
+                  - discord.com
                   - discord.gg
                   - splitgateproseries.com
                   - discord.gift
@@ -714,6 +715,7 @@ plugins:
             - match_links:
                 exclude_domains: # When updating this list also update the standard domains in the fanart and video/clips filter below
                   - splitgate.com
+                  - discord.com
                   - discord.gg
                   - splitgateproseries.com
                   - discord.gift
@@ -771,6 +773,7 @@ plugins:
             - match_links:
                 exclude_domains: # When updating this list also update the standard domains in the fanart and video/clips filter below
                   - splitgate.com
+                  - discord.com
                   - discord.gg
                   - splitgateproseries.com
                   - discord.gift
@@ -1257,11 +1260,12 @@ plugins:
           rules:
             active_filter:
               enabled: true
-      - channel: "1271087482137481307"
+
+      - channel: "327997395650740225" #general
         config:
           rules:
             max_lines:
-              enabled: false
+              enabled: true
 
       - level: ">=30"
         config:
