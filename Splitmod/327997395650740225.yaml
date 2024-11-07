@@ -1533,6 +1533,7 @@ plugins:
         - "900820893914247189" # level 10
         - "900820759189028934" # level 5
         - "925505137038999593" # level 0
+        - "1232469305560535061" # 1k playstreak club
     overrides:
       - level: ">=50"
         config:
