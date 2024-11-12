@@ -535,7 +535,6 @@ plugins:
                     "tits",
                     "boob",
                     "boobies",
-                    "tit",
                     "nude",
                     "nudes",
                     "vagina",
@@ -579,6 +578,16 @@ plugins:
                     "sugma",
                     "testtesttest"
                   ]
+                case_sensitive: false
+                only_full_words: true
+                match_visible_names: true
+                match_usernames: true
+                match_nicknames: true
+                match_custom_status: true
+                normalize: true
+            - match_regex:
+                patterns:
+                  - "\\btit\\b"
                 case_sensitive: false
                 only_full_words: true
                 match_visible_names: true
