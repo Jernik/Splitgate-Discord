@@ -585,7 +585,7 @@ plugins:
                 match_usernames: true
                 match_nicknames: true
                 match_custom_status: true
-                normalize: true
+                normalize: false
           actions:
             clean: true
             reply:
