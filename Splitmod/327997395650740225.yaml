@@ -894,7 +894,7 @@ plugins:
               text: "<@!{user.id}> please calm down with the caps!"
               auto_delete: 5s
             alert:
-              channel: "869022038642294814" # automod log
+              channel: "1334349505818001429" # automod log
               text: |-
                 :robot: Automod **caps_filter** triggered by <@!{user.id}> (`{user.id}`) actions taken: **clean, reply, log**
 
@@ -1604,7 +1604,7 @@ plugins:
           include: [SET_ANTIRAID_USER, SET_ANTIRAID_AUTO]
           exclude_bots: true
           exclude_categories: ["870933880339845141"]
-        "869022038642294814": # automod-logs
+        "1334349505818001429": # automod-logs
           include:
             [
               AUTOMOD_ACTION,
