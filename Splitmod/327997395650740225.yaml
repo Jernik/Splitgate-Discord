@@ -35,7 +35,7 @@ plugins:
       message_channel: "872568882118942800" # config
       warn_message: "⚠️ You have received a warning on the `{guildName}` server:```{reason}```"
       kick_message: "👢 You have been kicked from the `{guildName}` server:```{reason}```"
-      ban_message: "⛔ You have been banned from the `{guildName}` server:```{reason}``` Please visit https://forms.gle/xRu6fMWdjDCsHvbb9 to appeal your ban"
+      ban_message: "⛔ You have been banned from the `{guildName}` server:```{reason}``` Please visit https://appeal.gg/splitgate/ to appeal your ban"
       alert_on_rejoin: true
       warn_notify_threshold: 3
       warn_notify_message: |-
@@ -290,9 +290,9 @@ plugins:
                 case_sensitive: false
           actions:
             clean: true
-            reply:
-              text: "<@!{user.id}> please watch your language!"
-              auto_delete: 8s
+            # reply:
+            #   text: "<@!{user.id}> please watch your language!"
+            #   auto_delete: 8s
             ban:
               reason: "Offensive language."
 
@@ -320,9 +320,9 @@ plugins:
                 match_custom_status: false
           actions:
             clean: true
-            reply:
-              text: "<@!{user.id}> please do not send invites to other Discord servers!"
-              auto_delete: 5s
+            # reply:
+            #   text: "<@!{user.id}> please do not send invites to other Discord servers!"
+            #   auto_delete: 5s
             mute:
               reason: "Sending invites to another Discord server"
               duration: 1h
@@ -698,7 +698,7 @@ plugins:
           actions:
             clean: true
             reply:
-              text: "<@!{user.id}> please do not post links from that domain in this channel!"
+              text: "<@!{user.id}> We only allow a few whitelisted domains here!"
               auto_delete: 5s
             add_to_counter:
               counter: "autodomain"
@@ -722,7 +722,7 @@ plugins:
           actions:
             clean: true
             reply:
-              text: "<@!{user.id}> please do not post links from that domain in this channel!"
+              text: "<@!{user.id}> We only allow a few whitelisted domains here!"
               auto_delete: 5s
             add_to_counter:
               counter: "autodomain"
@@ -808,7 +808,7 @@ plugins:
           actions:
             clean: true
             reply:
-              text: "<@!{user.id}> please do not post links from that domain in this channel!"
+              text: "<@!{user.id}> We only allow a few whitelisted domains here!"
               auto_delete: 5s
 
         # HARD DEAD GAME FILTER
@@ -861,7 +861,7 @@ plugins:
                 <@!{user.id}> Phone numbers are not allowed!
               auto_delete: 7s
             alert:
-              channel: "683064353544470580" #alert channel
+              channel: "1334349505818001429" #alert channel
               text: |-
                 <@!{user.id}>(`{user.id}`) sent a phone number!
                 {matchSummary}
