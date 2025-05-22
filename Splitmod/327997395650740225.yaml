@@ -901,13 +901,17 @@ plugins:
           triggers:
             - match_regex:
                 patterns:
-                  - ^\s*(#{1,3}\s).+
+                  - (^\s*(#{1,3}\s).+)|((\[.+\]\(.+\)))
           actions:
             clean: true
-            log: true
+            log: false
             reply:
-              text: "<@!{user.id}> don't enlarge your text!"
+              text: "<@!{user.id}> please calm down with the big text!"
               auto_delete: 5s
+            alert:
+              channel: "1334349505818001429" # automod log
+              text: |-
+                :robot: Automod **caps_filter** triggered by <@!{user.id}> (`{user.id}`) actions taken: **clean, reply, log**
         #COUNTERS---------------------------------
         #word filter escalation
         automodc1:
