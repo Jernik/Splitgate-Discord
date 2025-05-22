@@ -897,7 +897,17 @@ plugins:
               channel: "1334349505818001429" # automod log
               text: |-
                 :robot: Automod **caps_filter** triggered by <@!{user.id}> (`{user.id}`) actions taken: **clean, reply, log**
-
+        big_text_filter:
+          triggers:
+            - match_regex:
+                patterns:
+                  - ^#
+          actions:
+            clean: true
+            log: true
+            reply:
+              text: "<@!{user.id}> don't enlarge your text!"
+              auto_delete: 5s
         #COUNTERS---------------------------------
         #word filter escalation
         automodc1:
@@ -1362,6 +1372,8 @@ plugins:
             lfg_filter:
               enabled: false
             music_domain_filter:
+              enabled: false
+            big_text_filter:
               enabled: false
       - level: ">=100"
         config:
