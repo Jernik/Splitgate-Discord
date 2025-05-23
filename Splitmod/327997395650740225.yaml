@@ -612,6 +612,7 @@ plugins:
                 # Add words that should be filtered in the row below
                 words:
                   [
+                    "This is the end of my time with Splitgate 2. It was short and absolutely sweet.",
                     "⣿",
                     "foot lettuce",
                     "Scooby Dooby Doo, where are you?",
