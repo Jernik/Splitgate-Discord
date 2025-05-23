@@ -655,7 +655,7 @@ plugins:
               auto_delete: 8s
             mute:
               reason: "spamming."
-              duration: 12h
+              duration: 4h
 
         # WILDCARD/TOKEN FILTER
         wildcard_filter:
