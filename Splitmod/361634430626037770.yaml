@@ -331,17 +331,46 @@ plugins:
               reason: "Sharing referral codes."
               duration: 12h
 
+        # REF FILTER
         ref_filter:
           triggers:
             - match_words:
                 # Add words that should be filtered in the row below
-                words: ["XP", "no experience"]
-                case_sensitive: true
+                words:
+                  [
+                    "referral",
+                    "ref",
+                    "referral",
+                    "refferal",
+                    "r34434al",
+                    "referal",
+                    "refururural",
+                    "r e f f e r a l c o d e s",
+                  ]
+                case_sensitive: false
                 only_full_words: true
+            - match_words:
+                # Add words that should be filtered in the row below
+                words:
+                  [
+                    "free splitcoin",
+                    "free sc",
+                    "free spl!tcoin",
+                    "free coin",
+                    "use my code",
+                    "use this code",
+                    "use the code",
+                    "use me code",
+                    "anyone under level 10 DM me",
+                    "Anyone under lvl 10 pls dm me",
+                  ]
+                case_sensitive: false
+                only_full_words: false
           actions:
-            clean: false
+            clean: true
             reply:
-              text: "<@!{user.id}> please check our announcement https://discord.com/channels/327997395650740225/605924852104298506/1375963426463158335"
+              text: "<@!{user.id}> please do not post referral codes or ask people to DM you for referral codes!"
+              auto_delete: 8s
 
         # SERVER FILTER
         server_filter:
