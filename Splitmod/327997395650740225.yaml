@@ -901,6 +901,7 @@ plugins:
               text: |-
                 :robot: Automod **caps_filter** triggered by <@!{user.id}> (`{user.id}`) actions taken: **clean, reply, log**
         big_text_filter:
+          enabled: false
           triggers:
             - match_regex:
                 patterns:
@@ -1265,6 +1266,8 @@ plugins:
         config:
           rules:
             max_lines:
+              enabled: true
+            big_text_filter:
               enabled: true
 
       - level: ">=30"
