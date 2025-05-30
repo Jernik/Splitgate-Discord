@@ -277,7 +277,6 @@ plugins:
             - match_regex:
                 patterns:
                   - "\\bn[!ali1\\|]{1}(g){2}(a|er){1,2}" #n word version 1
-                  - "\\bn(@@|.i|i.){1}(g){1,2}(a|er){1,2}" #n word version 2
                   - "\\bn{1,}i{1,}g{2,}e{1,}r{1,}" #n word version 3
                   - "\\bf[4a]{1}(g){1,2}(ot|0t){0,}\\b" #f word
                 normalize: true
@@ -296,7 +295,29 @@ plugins:
             #   auto_delete: 8s
             ban:
               reason: "Offensive language."
-
+        alerts_filter:
+          triggers:
+            - match_words:
+                words:
+                  - kike
+            - match_regex:
+                patterns:
+                  - "\\bn(@@|.i|i.){1}(g){1,2}(a|er){1,2}" #n word version 2
+                normalize: true
+                strip_markdown: true
+                match_messages: true
+                match_embeds: true
+                match_visible_names: true
+                match_usernames: true
+                match_nicknames: true
+                match_custom_status: true
+                case_sensitive: false
+          actions:
+            alert:
+              channel: "1377840744605155358"
+              text: |-
+                Possible rule-breaking message detected by <@!{user.id}>:
+                {matchSummary}
         # INVITE FILTER
         invite_filter:
           triggers:
@@ -665,7 +686,6 @@ plugins:
                 # Add wildcard/token that should be filtered in the row below ex.
                 words:
                   - fag
-                  - kike
                   - n1bb
                   - n1gg
                   - n1qq
