@@ -307,7 +307,7 @@ plugins:
                 strip_markdown: true
                 match_messages: true
                 match_embeds: true
-                match_visible_names: true
+                match_visible_names: false
                 match_usernames: true
                 match_nicknames: true
                 match_custom_status: true
