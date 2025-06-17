@@ -1532,7 +1532,7 @@ plugins:
   # TAGS
   tags:
     config:
-      prefix: ";"
+      prefix: "!!"
       delete_with_command: true
       categories: {}
       can_create: false
