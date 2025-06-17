@@ -1533,7 +1533,7 @@ plugins:
   tags:
     config:
       prefix: "!!"
-      delete_with_command: true
+      auto_delete_command: true
       categories: {}
       can_create: false
       can_use: false
