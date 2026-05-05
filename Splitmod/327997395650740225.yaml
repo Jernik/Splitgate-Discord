@@ -963,6 +963,17 @@ plugins:
               channel: "1334349505818001429" # automod log
               text: |-
                 :robot: Automod **caps_filter** triggered by <@!{user.id}> (`{user.id}`) actions taken: **clean, reply, log**
+        check_my_bio:
+          triggers:
+            - match_words:
+                words:
+                  - check my bio
+                  - check my bi0
+                  - in my bio
+          actions:
+            clean: true
+            ban:
+              reason: "Compromised account detected, please appeal once your account has been resecured - https://discord.com/safety/securing-your-discord-account"
         #COUNTERS---------------------------------
         #word filter escalation
         automodc1:
