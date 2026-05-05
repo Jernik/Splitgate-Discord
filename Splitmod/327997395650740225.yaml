@@ -1432,6 +1432,8 @@ plugins:
               enabled: false
             spammed_words_filter:
               enabled: false
+            check_my_bio:
+              enabled: false
       - level: ">=41"
         config:
           rules:
